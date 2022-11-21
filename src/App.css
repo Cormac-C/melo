@@ -7,11 +7,12 @@
   top: 0;
   left: 0;
   height: 100vh;
-  width: 20%;
+  width: 240px;
 
   border: 1px solid black;
   background: #2A2A2A;
   color: white;
+  text-align: left;
 
   padding: 1rem;
   display: flex;
@@ -28,10 +29,6 @@
   background: #590DE5;
   border-radius: 4px;
   padding: .5rem;
-}
-
-.sidebar > nav  {
-  text-align: left;
 }
 
 .sidebar > nav > ul > a  {

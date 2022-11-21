@@ -1,17 +1,37 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import UserDataContext from "./context";
+import { Signup, Login, Home, PlaylistPage } from "./pages";
 import "./App.css";
-import { Signup, Login, Home } from "./pages";
+
+const defaultUserData = {
+  likedSongs: [],
+  playlists: [
+    {
+      id: "dummy1",
+      title: "Dummy Playlist",
+      songs: [],
+    },
+    {
+      id: "dummy2",
+      title: "Dummy Playlist 2",
+      songs: [],
+    },
+  ],
+};
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </Router>
+    <UserDataContext.Provider value={defaultUserData}>
+      <Router>
+        <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/list/:id" element={<PlaylistPage />} />
+        </Routes>
+      </Router>
+    </UserDataContext.Provider>
   );
 }
 

@@ -1,13 +1,14 @@
-import { React } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { MdHomeFilled } from "react-icons/md";
 import { MdLibraryMusic } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
 import createPlaylist from '../assets/createPlaylist.svg';
+import UserDataContext from "../context";
 
 export function Sidebar() {
   return (
-    <div style={{ width: "20%" }}>
+    <div style={{ width: "240px" }}>
       <div className="sidebar">
         <div style={{ display: "flex", alignContent: "center"}}>
           <img src="/logo.svg" alt="logo" />
@@ -25,6 +26,13 @@ export function Sidebar() {
           </ul>
         </nav>
         <div style={{borderTop: "1px solid grey", margin: "1rem 0"}}></div>
+        <UserDataContext.Consumer>
+          {value => (
+            value.playlists.map((({id, title}) => (
+              <Link key={id} to={`/list/${id}`}>{title}</Link>
+            )))
+          )}
+        </UserDataContext.Consumer>
       </div>
     </div>
   );
