@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserDataContext from "./context";
 import { Signup, Login, Home, PlaylistPage } from "./pages";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const defaultUserData = {
   likedSongs: [],
