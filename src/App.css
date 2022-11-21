@@ -10,7 +10,7 @@
   width: 240px;
 
   border: 1px solid black;
-  background: #2A2A2A;
+  background: #2a2a2a;
   color: white;
   text-align: left;
 
@@ -26,17 +26,21 @@
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  background: #590DE5;
+  background: #590de5;
   border-radius: 4px;
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
-.sidebar > nav > ul > a  {
+:hover.create-playlist {
+  background: #340984;
+}
+
+.sidebar > nav > ul > a {
   width: 100%;
   display: flex;
   align-items: center;
   padding: 8px 0;
 }
-.sidebar > nav > ul > a > svg  {
+.sidebar > nav > ul > a > svg {
   margin-right: 12px;
 }

@@ -10,7 +10,7 @@ export function Sidebar() {
   return (
     <div style={{ width: "240px" }}>
       <div className="sidebar">
-        <div style={{ display: "flex", alignContent: "center" }}>
+        <div className="flex content-center">
           <img className="px-3" src="/logo.svg" alt="logo" />
           <h1 className="text-3xl">melo</h1>
         </div>
@@ -19,16 +19,16 @@ export function Sidebar() {
           Create Playlist
         </button>
         <nav>
-          <ul>
-            <Link to="/">
+          <ul className="p-0 m-0">
+            <Link className="text-white no-underline" to="/">
               <MdHomeFilled />
               Home
             </Link>
-            <Link to="/signup">
+            <Link className="text-white no-underline" to="/signup">
               <MdLibraryMusic />
               Your Library
             </Link>
-            <Link to="/login">
+            <Link className="text-white no-underline" to="/login">
               <MdFavorite />
               Liked Songs
             </Link>
@@ -38,7 +38,11 @@ export function Sidebar() {
         <UserDataContext.Consumer>
           {(value) =>
             value.playlists.map(({ id, title }) => (
-              <Link key={id} to={`/list/${id}`}>
+              <Link
+                className="text-white no-underline"
+                key={id}
+                to={`/list/${id}`}
+              >
                 {title}
               </Link>
             ))
