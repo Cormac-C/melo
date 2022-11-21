@@ -1,9 +1,11 @@
 import { React } from "react";
+import { Sidebar } from "../components/Sidebar"
 
 export function Home() {
   return (
     <main className="App">
-      <p>Home Page</p>
+      <Sidebar />
+      <p>wowzers</p>
     </main>
   );
 }
