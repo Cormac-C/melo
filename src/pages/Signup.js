@@ -7,6 +7,7 @@ export function Signup() {
     <main className="App bg-neutral-800 w-screen h-screen flex items-center justify-center md:p-8">
       <Form className="bg-white w-full h-full md:w-4/5 lg:w-2/5 md:h-fit py-4 px-8 rounded-lg flex flex-col max-h-full overflow-scroll space-y-2">
         <div className="flex h-fit justify-center">
+          <h1 className="text-3xl">Register</h1>
           <img className="w-12 mx-3" src="/logo.svg" alt="logo" />
           <h1 className="text-3xl">melo</h1>
         </div>
