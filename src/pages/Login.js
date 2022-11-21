@@ -32,13 +32,13 @@ export function Login() {
         <div className="flex flex-col md:flex-row justify-around pb-8">
           {/* TODO add logos */}
           <Button
-            className="!border-purple hover:!bg-purple !text-gray-600 hover:!text-white"
+            className="!border-purple hover:!bg-purple !text-gray-600 hover:!text-white my-2"
             variant="outline-primary"
           >
             Log In with Facebook
           </Button>
           <Button
-            className="!border-purple hover:!bg-purple !text-gray-600 hover:!text-white"
+            className="!border-purple hover:!bg-purple !text-gray-600 hover:!text-white my-2"
             variant="outline-primary"
           >
             Log In with Google
