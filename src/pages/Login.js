@@ -9,10 +9,10 @@ export function Login() {
           <img className="w-16 mx-3" src="/logo.svg" alt="logo" />
           <h1 className="text-3xl">melo</h1>
         </div>
-        <h1 className="text-3xl text font-bold text-purple">Sign In</h1>
+        <h1 className="text-3xl font-bold text-purple">Sign In</h1>
         <Form.Group className="text-left pt-2 pb-4">
           <Form.Label>Username</Form.Label>
-          <Form.Control type="email" placeholder="Email" />
+          <Form.Control type="text" placeholder="Username" />
         </Form.Group>
 
         <Form.Group className="text-left pt-2 pb-4">
@@ -29,16 +29,16 @@ export function Login() {
 
         <h4 className="text-gray-600 py-3">or</h4>
 
-        <div className="flex flex-col md:flex-row justify-around pb-8">
+        <div className="flex flex-col md:flex-row justify-between pb-8">
           {/* TODO add logos */}
           <Button
-            className="!border-purple hover:!bg-purple !text-gray-600 hover:!text-white my-2"
+            className="!border-purple hover:!bg-purple !text-gray-600 hover:!text-white my-2 md:w-2/5"
             variant="outline-primary"
           >
             Log In with Facebook
           </Button>
           <Button
-            className="!border-purple hover:!bg-purple !text-gray-600 hover:!text-white my-2"
+            className="!border-purple hover:!bg-purple !text-gray-600 hover:!text-white my-2 md:w-2/5"
             variant="outline-primary"
           >
             Log In with Google
