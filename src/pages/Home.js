@@ -1,11 +1,14 @@
 import { React } from "react";
-import { Sidebar } from "../components/Sidebar"
+import { Sidebar, Topbar } from "../components";
 
 export function Home() {
   return (
-    <main className="App">
+    <main className="App w-screen h-screen flex flex-row">
       <Sidebar />
-      <p>wowzers</p>
+      <div className="w-full flex flex-col">
+        <Topbar />
+        <p>wowzers</p>
+      </div>
     </main>
   );
 }

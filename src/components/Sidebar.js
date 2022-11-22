@@ -8,8 +8,8 @@ import UserDataContext from "../context";
 
 export function Sidebar() {
   return (
-    <div style={{ width: "240px" }}>
-      <div className="sidebar">
+    <div className="w-72 h-full">
+      <div className="sidebar h-full">
         <div className="flex content-center">
           <img className="px-3" src="/logo.svg" alt="logo" />
           <h1 className="text-3xl">melo</h1>
