@@ -7,18 +7,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const defaultUserData = {
   likedSongs: [],
-  playlists: [
-    {
-      id: "dummy1",
+  playlists: {
+    "0": {
       title: "Dummy Playlist",
-      songs: [],
+      songs: [0, 1],
     },
-    {
-      id: "dummy2",
+    "1": {
       title: "Dummy Playlist 2",
-      songs: [],
+      songs: [2, 3],
     },
-  ],
+  },
 };
 
 function App() {

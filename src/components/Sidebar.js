@@ -43,12 +43,11 @@ export function Sidebar() {
         </nav>
         <div style={{ borderTop: "1px solid grey", margin: "1rem 0" }}></div>
         <UserDataContext.Consumer>
-          {(value) =>
-            value.playlists.map(({ id, title }) => (
-              <div>
+          {(userData) =>
+            Object.entries(userData.playlists).map(([id, { title }]) => (
+              <div key={id}>
                 <Link
                   className="text-white no-underline"
-                  key={id}
                   to={`/list/${id}`}
                 >
                   {title}
