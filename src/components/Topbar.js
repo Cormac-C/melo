@@ -9,14 +9,13 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import UserDataContext from "../context";
 
 export function Topbar() {
   return (
     <Navbar
       bg="dark"
       variant="dark"
-      className="bg-slate-900 !text-white"
+      className="bg-zinc-900 !text-white"
       expand="md"
     >
       <Container fluid>

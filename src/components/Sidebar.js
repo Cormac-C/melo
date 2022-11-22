@@ -9,28 +9,35 @@ import UserDataContext from "../context";
 export function Sidebar() {
   return (
     <div className="w-72 h-full">
-      <div className="sidebar h-full">
+      <div className="w-72 h-full flex-col p-4 bg-zinc-800 text-white text-left space-y-6">
         <div className="flex content-center">
           <img className="px-3" src="/logo.svg" alt="logo" />
           <h1 className="text-3xl">melo</h1>
         </div>
-        <button className="create-playlist">
+        {/* rgb(89, 13, 229); */}
+        <button className="w-full flex justify-evenly p-2 rounded bg-violet-700 hover:bg-violet-800">
           <img src={createPlaylist} alt="Create Playlist" />
           Create Playlist
         </button>
         <nav>
           <ul className="p-0 m-0">
             <Link className="text-white no-underline" to="/">
-              <MdHomeFilled />
-              Home
+              <div className="flex content-center space-x-3 py-2">
+                <MdHomeFilled />
+                Home
+              </div>
             </Link>
             <Link className="text-white no-underline" to="/signup">
-              <MdLibraryMusic />
-              Your Library
+              <div className="flex content-center space-x-3 py-2">
+                <MdLibraryMusic />
+                Your Library
+              </div>
             </Link>
             <Link className="text-white no-underline" to="/login">
-              <MdFavorite />
-              Liked Songs
+              <div className="flex content-center space-x-3 py-2">
+                <MdFavorite />
+                Liked Songs
+              </div>
             </Link>
           </ul>
         </nav>
@@ -38,13 +45,15 @@ export function Sidebar() {
         <UserDataContext.Consumer>
           {(value) =>
             value.playlists.map(({ id, title }) => (
-              <Link
-                className="text-white no-underline"
-                key={id}
-                to={`/list/${id}`}
-              >
-                {title}
-              </Link>
+              <div>
+                <Link
+                  className="text-white no-underline"
+                  key={id}
+                  to={`/list/${id}`}
+                >
+                  {title}
+                </Link>
+              </div>
             ))
           }
         </UserDataContext.Consumer>
