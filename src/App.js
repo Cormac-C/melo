@@ -10,11 +10,11 @@ const defaultUserData = {
   playlists: {
     "0": {
       title: "Dummy Playlist",
-      songs: [0, 1],
+      songs: ["What's the Difference", "Mob Ties"],
     },
     "1": {
       title: "Dummy Playlist 2",
-      songs: [2, 3],
+      songs: ["G.O.M.D."],
     },
   },
 };
