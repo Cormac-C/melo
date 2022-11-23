@@ -1,4 +1,5 @@
 import React from "react";
+import { useSearchParams } from "react-router-dom";
 import {
   MdOutlineChevronRight,
   MdOutlineChevronLeft,
@@ -13,6 +14,13 @@ import { Image } from "react-bootstrap";
 import sampleUser from "../assets/sampleUser.png";
 
 export function Topbar() {
+  let [searchParams, setSearchParams] = useSearchParams();
+
+  const onSearch = (event) => {
+    const searchQuery = event.target.value;
+    setSearchParams({ q: searchQuery });
+  }
+
   return (
     <Navbar
       bg="dark"
@@ -36,6 +44,7 @@ export function Topbar() {
               placeholder="Search"
               className="me-2 !px-9 !rounded-full !bg-zinc-800 !border-purple-light !text-white"
               aria-label="Search"
+              onKeyUp={onSearch}
             />
           </Form>
           <div className="!bg-zinc-800 !rounded-full flex flex-row">
