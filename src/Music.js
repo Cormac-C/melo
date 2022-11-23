@@ -3,6 +3,7 @@ const music = {
     photo: "",
     albums: {
       "2001": {
+        photo: "bieberAlbum.png",
         songs: [
           {
             id: "What's the Difference",
@@ -17,6 +18,7 @@ const music = {
     photo: "",
     albums: {
       "Scorpion": {
+        photo: "bieberAlbum.png",
         songs: [
           {
             id: "Mob Ties",
@@ -31,6 +33,7 @@ const music = {
     photo: "",
     albums: {
       "2014 Forest Hill Drive": {
+        photo: "bieberAlbum.png",
         songs: [
           {
             id: "G.O.M.D.",
@@ -45,6 +48,7 @@ const music = {
     photo: "",
     albums: {
       "Stillmatic": {
+        photo: "bieberAlbum.png",
         songs: [
           {
             id: "Ether",
@@ -59,6 +63,7 @@ const music = {
     photo: "",
     albums: {
       "My Beautiful Dark Twisted Fantasy": {
+        photo: "bieberAlbum.png",
         songs: [
           {
             id: "POWER",
@@ -68,6 +73,7 @@ const music = {
         ]
       },
       "Yeezus": {
+        photo: "bieberAlbum.png",
         songs: [
           {
             id: "Black Skinhead (Instrumental)",
@@ -100,6 +106,10 @@ export default class Music {
         if (song) return { ...song, artist, album };
       })
     ));
+  }
+
+  static getArtists() {
+    return music;
   }
 
   // Get all albums, optionally 'by' an artist
