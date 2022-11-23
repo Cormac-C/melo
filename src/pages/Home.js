@@ -1,34 +1,46 @@
 import { React } from "react";
 import { MainPage } from "./Middleware";
-import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
 import { Row } from "react-bootstrap";
-import playlistCover from "../assets/playlistCover.png";
-import { Image } from "react-bootstrap";
+import playlistCover1 from "../assets/playlistCover1.png";
+import playlistCover2 from "../assets/playlistCover2.png";
+import { VertCard } from "../components";
 
 export function Home() {
   return (
     <MainPage>
-      <p className="text-white">wowzers</p>
-      <Row className="w-3/4">
-        <h1 className="text-white">Recently Played</h1>
-        <div className="flex flex-row overflow-scroll">
-          <div
-            className="w-60 bg-no-repeat bg-cover rounded-md"
-            style={{ backgroundImage: `url(${playlistCover})` }}
-          >
-            <div className="backdrop-blur backdrop-brightness-75 backdrop-saturate-50 h-full  w-full p-4 rounded-md">
-              <Image
-                className="!h-auto !w-48 !mx-auto "
-                variant="top"
-                src={playlistCover}
-              />
-              <div className="text-white !w-48 !mx-auto">
-                <h4>Car jamz everyone knows</h4>
-                <p>By Andrea Nicastro</p>
-              </div>
-            </div>
-          </div>
+      <h2 className="text-white">Recently Played</h2>
+      <Row className="w-full">
+        <div className="flex flex-row overflow-scroll space-x-4">
+          <VertCard
+            title="Car jamz everyone knows"
+            subtitle="By Andrea Nicastro"
+            imgSrc={playlistCover1}
+          />
+          <VertCard
+            title="Shower Tunes"
+            subtitle="My favourite songs to sing in the shower"
+            imgSrc={playlistCover2}
+          />
+          <VertCard
+            title="Car jamz everyone knows"
+            subtitle="By Andrea Nicastro"
+            imgSrc={playlistCover1}
+          />
+          <VertCard
+            title="Shower Tunes"
+            subtitle="My favourite songs to sing in the shower"
+            imgSrc={playlistCover2}
+          />
+          <VertCard
+            title="Car jamz everyone knows"
+            subtitle="By Andrea Nicastro"
+            imgSrc={playlistCover1}
+          />
+          <VertCard
+            title="Shower Tunes"
+            subtitle="My favourite songs to sing in the shower"
+            imgSrc={playlistCover2}
+          />
         </div>
       </Row>
     </MainPage>
