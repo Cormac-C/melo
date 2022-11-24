@@ -1,6 +1,6 @@
 import { React } from "react";
 import { Form, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function Login() {
   const navigate = useNavigate();
@@ -66,6 +66,7 @@ export function Login() {
           >
             Log In
           </Button>
+          <Link to="/signup">Create Account</Link>
         </div>
 
         <h4 className="text-gray-600 text-center">or</h4>

@@ -25,6 +25,13 @@ export function Topbar() {
     setSearchParams({ q: searchQuery });
   };
 
+  const logout = () => {
+    if (window.confirm("Are you sure you want to logout?")) {
+      localStorage.removeItem("currentUser");
+      navigate("/login");
+    }
+  };
+
   const [user, setUser] = useState();
 
   useEffect(() => {
@@ -75,7 +82,7 @@ export function Topbar() {
             >
               <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
               <NavDropdown.Item href="#action4">Settings</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">Logout</NavDropdown.Item>
+              <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
             </NavDropdown>
           </div>
         </Navbar.Collapse>
