@@ -1,6 +1,8 @@
 import { React } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Image } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import facebook from "../assets/facebook.png";
+import google from "../assets/googleIcon.svg";
 
 export function Login() {
   const navigate = useNavigate();
@@ -74,15 +76,17 @@ export function Login() {
         <div className="flex flex-col md:flex-row justify-between">
           {/* TODO add logos */}
           <Button
-            className="!border-purple hover:!bg-purple !text-gray-600 hover:!text-white my-2 md:w-2/5"
+            className="!border-purple hover:!bg-purple !text-gray-600 hover:!text-white my-2 md:w-2/5 !flex flex-row"
             variant="outline-primary"
           >
+            <Image src={facebook} className="w-5 h-auto mr-1" />
             Log In with Facebook
           </Button>
           <Button
-            className="!border-purple hover:!bg-purple !text-gray-600 hover:!text-white my-2 md:w-2/5"
+            className="!border-purple hover:!bg-purple !text-gray-600 hover:!text-white my-2 md:w-2/5 !flex flex-row"
             variant="outline-primary"
           >
+            <Image src={google} className="w-5 h-auto mr-1" />
             Log In with Google
           </Button>
         </div>
