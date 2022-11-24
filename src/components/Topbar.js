@@ -57,10 +57,16 @@ export function Topbar() {
       <Container fluid>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
-          <Button className="!bg-zinc-800 !rounded-full !border-white !p-1.5 mx-2">
+          <Button
+            onClick={() => navigate(-1)}
+            className="!bg-zinc-800 !rounded-full !border-white !p-1.5 mx-2"
+          >
             <MdOutlineChevronLeft />
           </Button>
-          <Button className="!bg-zinc-800 !rounded-full !border-white !p-1.5 mx-2">
+          <Button
+            onClick={() => navigate(1)}
+            className="!bg-zinc-800 !rounded-full !border-white !p-1.5 mx-2"
+          >
             <MdOutlineChevronRight />
           </Button>
           <Form className="d-flex !text-gray-500 w-3/4">
