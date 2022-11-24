@@ -23,19 +23,19 @@ export function Sidebar() {
           <ul className="p-0 m-0">
             <Link className="text-white no-underline" to="/">
               <div className="flex content-center space-x-3 py-2">
-                <MdHomeFilled />
+                <MdHomeFilled className="my-auto" />
                 Home
               </div>
             </Link>
             <Link className="text-white no-underline" to="/signup">
               <div className="flex content-center space-x-3 py-2">
-                <MdLibraryMusic />
+                <MdLibraryMusic className="my-auto" />
                 Your Library
               </div>
             </Link>
             <Link className="text-white no-underline" to="/login">
               <div className="flex content-center space-x-3 py-2">
-                <MdFavorite />
+                <MdFavorite className="my-auto" />
                 Liked Songs
               </div>
             </Link>
@@ -46,10 +46,7 @@ export function Sidebar() {
           {(userData) =>
             Object.entries(userData.playlists).map(([id, { title }]) => (
               <div key={id}>
-                <Link
-                  className="text-white no-underline"
-                  to={`/list/${id}`}
-                >
+                <Link className="text-white no-underline" to={`/list/${id}`}>
                   {title}
                 </Link>
               </div>
