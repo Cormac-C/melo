@@ -1,23 +1,62 @@
 import { React } from "react";
 import { Form, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
+  const navigate = useNavigate();
+
+  const checkLogin = (e) => {
+    e.preventDefault();
+    console.log("checking cookie");
+    const loginInfo = {};
+    const formData = new FormData(e.target);
+    for (var [key, value] of formData.entries()) {
+      loginInfo[key] = value;
+    }
+    const matchUser = localStorage.getItem(loginInfo.username);
+    if (matchUser !== null) {
+      try {
+        const parsed = JSON.parse(matchUser);
+        if (parsed.password === loginInfo.password) {
+          localStorage.setItem("currentUser", matchUser);
+          navigate("/");
+        } else {
+          window.alert("Incorrect Password");
+          e.target.reset();
+        }
+      } catch (error) {
+        console.log(error, "e");
+      }
+    } else {
+      window.alert("No User Found with this Name");
+      e.target.reset();
+    }
+
+    return false;
+  };
   return (
     <main className="App bg-neutral-800 w-screen h-screen flex items-center justify-center">
-      <Form className="bg-white w-full h-full md:w-4/5 lg:w-2/5 md:h-fit py-4 px-8 rounded-lg flex align-center flex-col space-y-6">
+      <Form
+        onSubmit={checkLogin}
+        className="bg-white w-full h-full md:w-4/5 lg:w-2/5 md:h-fit py-4 px-8 rounded-lg flex align-center flex-col space-y-6"
+      >
         <div className="flex h-fit justify-center">
           <img className="w-16 mx-3" src="/logo.svg" alt="logo" />
           <h1 className="text-3xl">melo</h1>
         </div>
-        <h1 className="text-3xl font-bold text-purple">Sign In</h1>
+        <h1 className="text-3xl font-bold text-purple text-center">Sign In</h1>
         <Form.Group className="text-left">
           <Form.Label>Username</Form.Label>
-          <Form.Control type="text" placeholder="Username" />
+          <Form.Control name="username" type="text" placeholder="Username" />
         </Form.Group>
 
         <Form.Group className="text-left">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control
+            name="password"
+            type="password"
+            placeholder="Password"
+          />
         </Form.Group>
 
         <div>
@@ -29,7 +68,7 @@ export function Login() {
           </Button>
         </div>
 
-        <h4 className="text-gray-600">or</h4>
+        <h4 className="text-gray-600 text-center">or</h4>
 
         <div className="flex flex-col md:flex-row justify-between">
           {/* TODO add logos */}

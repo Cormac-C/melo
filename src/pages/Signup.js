@@ -1,11 +1,31 @@
 import { React } from "react";
 import { Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function Signup() {
+  const navigate = useNavigate();
+
+  const createSignup = (e) => {
+    e.preventDefault();
+    const userCookie = {};
+    const formData = new FormData(e.target);
+    for (var [key, value] of formData.entries()) {
+      if (key === "profilePic") {
+        // userCookie[key] = encodeImage(userCookie, value);
+      } else {
+        userCookie[key] = value;
+      }
+    }
+    localStorage.setItem(userCookie.username, JSON.stringify(userCookie));
+    navigate("/login");
+  };
+
   return (
     <main className="App bg-neutral-800 w-screen h-screen flex items-center justify-center md:p-8">
-      <Form className="bg-white w-full h-full md:w-4/5 lg:w-2/5 md:h-fit py-4 px-8 rounded-lg flex flex-col max-h-full overflow-scroll space-y-2">
+      <Form
+        onSubmit={createSignup}
+        className="bg-white w-full h-full md:w-4/5 lg:w-2/5 md:h-fit py-4 px-8 rounded-lg flex flex-col max-h-full overflow-scroll space-y-2"
+      >
         <div className="flex h-fit justify-center">
           <h1 className="text-3xl">Register</h1>
           <img className="w-12 mx-3" src="/logo.svg" alt="logo" />
@@ -20,7 +40,12 @@ export function Signup() {
             Username
             <span className="text-red-600">*</span>
           </Form.Label>
-          <Form.Control type="text" placeholder="Username" />
+          <Form.Control
+            name="username"
+            type="text"
+            placeholder="Username"
+            required
+          />
         </Form.Group>
 
         <Form.Group className="text-left">
@@ -28,7 +53,12 @@ export function Signup() {
             Password
             <span className="text-red-600">*</span>
           </Form.Label>
-          <Form.Control type="text" placeholder="Password" />
+          <Form.Control
+            name="password"
+            type="text"
+            placeholder="Password"
+            required
+          />
         </Form.Group>
 
         <h1 className="text-xl text-left text-purple font-semibold pt-2">
@@ -40,7 +70,7 @@ export function Signup() {
               Name
               <span className="text-red-600">*</span>
             </Form.Label>
-            <Form.Control type="text" placeholder="Name" />
+            <Form.Control name="name" type="text" placeholder="Name" required />
           </Form.Group>
 
           <Form.Group className="text-left">
@@ -48,7 +78,12 @@ export function Signup() {
               Surname
               <span className="text-red-600">*</span>
             </Form.Label>
-            <Form.Control type="text" placeholder="Surname" />
+            <Form.Control
+              name="surname"
+              type="text"
+              placeholder="Surname"
+              required
+            />
           </Form.Group>
         </div>
 
@@ -57,7 +92,12 @@ export function Signup() {
             Email
             <span className="text-red-600">*</span>
           </Form.Label>
-          <Form.Control type="email" placeholder="Email" />
+          <Form.Control
+            name="email"
+            type="email"
+            placeholder="Email"
+            required
+          />
         </Form.Group>
 
         <div className="flex flex-col md:flex-row justify-between">
@@ -66,7 +106,7 @@ export function Signup() {
               Date of Birth
               <span className="text-red-600">*</span>
             </Form.Label>
-            <Form.Control type="date" />
+            <Form.Control name="dob" type="date" required />
           </Form.Group>
 
           <Form.Group className="text-left">
@@ -74,12 +114,12 @@ export function Signup() {
               Profile Image
               <span className="text-gray-600">(optional)</span>
             </Form.Label>
-            <Form.Control type="file" size="sm" />
+            <Form.Control name="profilePic" type="file" size="sm" />
           </Form.Group>
         </div>
 
         <Form.Check className="text-left" type={"checkbox"}>
-          <Form.Check.Input type={"checkbox"} />
+          <Form.Check.Input type={"checkbox"} required />
           <Form.Check.Label>
             {"I have read the "}
             <Link className="text-gray-600" to="/">

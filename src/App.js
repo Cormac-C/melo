@@ -6,13 +6,14 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const defaultUserData = {
+  currentUser: "",
   likedSongs: [],
   playlists: {
-    "0": {
+    0: {
       title: "Dummy Playlist",
       songs: ["What's the Difference", "Mob Ties"],
     },
-    "1": {
+    1: {
       title: "Dummy Playlist 2",
       songs: ["G.O.M.D."],
     },

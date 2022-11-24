@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import {
   MdOutlineChevronRight,
   MdOutlineChevronLeft,
@@ -16,10 +18,27 @@ import sampleUser from "../assets/sampleUser.png";
 export function Topbar() {
   let [searchParams, setSearchParams] = useSearchParams();
 
+  const navigate = useNavigate();
+
   const onSearch = (event) => {
     const searchQuery = event.target.value;
     setSearchParams({ q: searchQuery });
-  }
+  };
+
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    try {
+      if (localStorage.getItem("currentUser")) {
+        const memoryUser = JSON.parse(localStorage.getItem("currentUser"));
+        setUser(memoryUser);
+      } else {
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return (
     <Navbar
@@ -50,12 +69,13 @@ export function Topbar() {
           <div className="!bg-zinc-800 !rounded-full flex flex-row">
             <Image src={sampleUser} className="h-8 m-1" roundedCircle={true} />
             <NavDropdown
-              title="Name Here"
+              title={user && `${user.name} ${user.surname}`}
               id="navbarScrollingDropdown"
               className="!text-white flex items-center"
             >
               <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
               <NavDropdown.Item href="#action4">Settings</NavDropdown.Item>
+              <NavDropdown.Item href="#action4">Logout</NavDropdown.Item>
             </NavDropdown>
           </div>
         </Navbar.Collapse>
