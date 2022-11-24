@@ -96,7 +96,7 @@ export function Home() {
     <MainPage>
       <h2 className="text-white my-4">Recently Played</h2>
       <Row className="w-full mb-8">
-        <div className="flex flex-row overflow-scroll space-x-4">
+        <div className="flex flex-row overflow-x-scroll space-x-4">
           {playlists.map((playlist) => {
             return (
               <VertCard
@@ -110,7 +110,7 @@ export function Home() {
       </Row>
       <h2 className="text-white my-4">Recommended for you</h2>
       <Row className="w-full mb-8">
-        <div className="flex flex-row overflow-scroll space-x-4">
+        <div className="flex flex-row overflow-x-scroll space-x-4">
           {albums.map((album) => {
             return (
               <HorizCard
@@ -127,7 +127,7 @@ export function Home() {
       </Row>
       <h2 className="text-white my-4">Trending Now</h2>
       <Row className="w-full mb-8">
-        <div className="flex flex-row overflow-scroll space-x-4">
+        <div className="flex flex-row overflow-x-scroll space-x-4">
           {songs.map((song) => {
             return (
               <HorizCard

@@ -2,6 +2,9 @@ import React from "react";
 import { Image } from "react-bootstrap";
 
 export function VertCard({ title, subtitle, imgSrc }) {
+  // Default for development purposes
+  if (imgSrc === undefined) imgSrc = require("../assets/bieberAlbum.png");
+
   return (
     <div
       className="w-60 bg-no-repeat bg-cover rounded-md"
