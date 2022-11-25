@@ -117,21 +117,31 @@ export default class Music {
     if (by) return music[by];
 
     let allAlbums = {};
-    Object.values(music).forEach((artist) => {
-      allAlbums = {...allAlbums, ...artist.albums}; // TODO: Inefficient
+    Object.entries(music).forEach(([artist, { albums }]) => {
+      allAlbums = { // TODO: Inefficient
+        ...allAlbums,
+        ...Object.fromEntries(
+          Object.entries(albums)
+            .map(([title, album]) => ([title, {...album, artist}])) // Add artist to the song album data
+        )};
     });
     return allAlbums;
   }
 
   // Get all songs, optionally 'by' an artist or 'from' an album
   static getSongs({by, from} = {}) {
-    let albums = Music.getAlbums({ by });
-    albums = from ? {from: albums[from]} : albums;
+    if (from & !by) {
+      var albums = Music.getAlbum(from);
+    } else if (by & from) {
+      var albums = music[by][from];
+    } else {
+      var albums = Music.getAlbums({ by });
+    }
 
     return Object.fromEntries(
       Object.entries(albums)
-        .map(([album, { songs }]) => // Parse out 'songs' from the album
-          songs.map(song => ({...song, album})) // Add album as an attribute to each song
+        .map(([album, { artist, songs }]) => // Parse out 'songs' from the album
+          songs.map(song => ({...song, album, artist})) // Add album/artist as an attribute to each song
         )
         .flat() // Flatten all albums into a 1D array of songs
         .map(song => [song.id, {...song }]) // Select 'id' as the key

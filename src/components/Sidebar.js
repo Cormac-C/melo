@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { MdHomeFilled } from "react-icons/md";
 import { MdLibraryMusic } from "react-icons/md";
@@ -7,6 +7,8 @@ import createPlaylist from "../assets/createPlaylist.svg";
 import UserDataContext from "../context";
 
 export function Sidebar() {
+  const [{ playlists }] = useContext(UserDataContext);
+
   return (
     <div className="w-72 h-full">
       <div className="w-72 h-full flex-col p-4 bg-zinc-800 text-white text-left space-y-6">
@@ -42,9 +44,8 @@ export function Sidebar() {
           </ul>
         </nav>
         <div style={{ borderTop: "1px solid grey", margin: "1rem 0" }}></div>
-        <UserDataContext.Consumer>
-          {(userData) =>
-            Object.entries(userData.playlists).map(([id, { title }]) => (
+          {
+            Object.entries(playlists).map(([id, { title }]) => (
               <div key={id}>
                 <Link className="text-white no-underline" to={`/list/${id}`}>
                   {title}
@@ -52,7 +53,6 @@ export function Sidebar() {
               </div>
             ))
           }
-        </UserDataContext.Consumer>
       </div>
     </div>
   );

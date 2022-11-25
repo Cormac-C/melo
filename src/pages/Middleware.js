@@ -9,7 +9,7 @@ export function MainPage({ children }) {
   return (
     <main className="App text-white w-screen h-screen flex flex-row bg-zinc-800">
       <Sidebar />
-      <div className="flex flex-col overflow-x-hidden">
+      <div className="flex flex-col overflow-x-hidden w-screen">
         <Topbar />
         {searchParams.get("q") ? <SearchResults /> : children}
       </div>

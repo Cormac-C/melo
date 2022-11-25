@@ -16,7 +16,7 @@ const searchSongs = (query) => {
 export function SearchResults() {
   let [searchParams] = useSearchParams();
   const query = searchParams.get("q");
-  const { playlists } = useContext(userDataContext);
+  const [{ playlists }] = useContext(userDataContext);
   const songResults = searchSongs(query);
 
   const playlistResults = Object.values(playlists).filter(

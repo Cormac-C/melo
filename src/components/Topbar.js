@@ -69,7 +69,7 @@ export function Topbar() {
           >
             <MdOutlineChevronRight />
           </Button>
-          <Form className="d-flex !text-gray-500 w-3/4">
+          <Form className="flex !text-gray-500 w-3/4">
             <MdSearch className="absolute text-xl m-2" />
             <Form.Control
               type="search"
