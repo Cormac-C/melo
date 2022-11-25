@@ -87,6 +87,9 @@ export function Topbar() {
               className="!text-white flex items-center"
             >
               <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => navigate("/account")}>
+                Account
+              </NavDropdown.Item>
               <NavDropdown.Item href="#action4">Settings</NavDropdown.Item>
               <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
             </NavDropdown>

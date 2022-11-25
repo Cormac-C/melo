@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserDataContext from "./context";
-import { Signup, Login, Home, PlaylistPage } from "./pages";
+import { Signup, Login, Home, PlaylistPage, Account } from "./pages";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -29,6 +29,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
           <Route path="/list/:id" element={<PlaylistPage />} />
+          <Route path="/account" element={<Account />} />
         </Routes>
       </Router>
     </UserDataContext.Provider>
