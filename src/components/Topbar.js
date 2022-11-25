@@ -90,7 +90,8 @@ export function Topbar() {
               <NavDropdown.Item onClick={() => navigate("/account")}>
                 Account
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action4">Settings</NavDropdown.Item>
+              <NavDropdown.Item href="#privacy">Privacy</NavDropdown.Item>
+              <NavDropdown.Item href="#policies">Policies</NavDropdown.Item>
               <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
             </NavDropdown>
           </div>
