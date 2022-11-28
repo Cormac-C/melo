@@ -91,7 +91,10 @@ export default class Music {
     return music[artist];
   }
 
-  static getAlbum(album) {
+  static getAlbum(album, {by} = {}) {
+    if (by) {
+      return {...music[by].albums[album], artist: by};
+    }
     Object.entries(music).forEach(([artist, { albums }]) => {
       if (Object.keys(albums).includes(album)) {
         return { ...albums[album], artist };
@@ -99,13 +102,24 @@ export default class Music {
     });
   }
 
-  static getSong(songID) {
-    Object.entries(music).forEach(([artist, { albums }]) => (
-      Object.entries(albums).forEach(([album, { songs }]) => {
+  static getSong(songID, {by, from} = {}) {
+    let foundSong;
+    if (by && from) {
+      return {...music[by].albums[from], artist: by, album: from};
+    } else if (by) {
+      Object.entries(music[by].albums).forEach(function ([album, { songs }]) {
         const song = songs.find(({id}) => id === songID);
-        if (song) return { ...song, artist, album };
+        if (song) foundSong = { ...song, artist: by, album };
       })
-    ));
+    } else {
+      Object.entries(music).forEach(function ([artist, { albums }]) {
+        Object.entries(albums).forEach(function ([album, { songs }]) {
+          const song = songs.find(({id}) => id === songID);
+          if (song) foundSong = { ...song, artist, album };
+        })
+      });
+    }
+    return foundSong;
   }
 
   static getArtists() {

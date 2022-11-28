@@ -10,6 +10,7 @@ function App() {
     userDataReducer,
     {
       likedSongs: [],
+      currentSong: "What's the Difference",
       playlists: {
         0: {
           title: "Dummy Playlist",
