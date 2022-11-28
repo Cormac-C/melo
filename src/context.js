@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuid } from 'uuid';
 
 /*
 DATA STRUCTURE
@@ -26,23 +27,23 @@ const likeSong = (state, songID) => {
 
 const createPlaylist = (state, newPlaylist) => {
   const newState = {...state};
-  const playlistID = "test"; // uuid();
+  const playlistID = uuid();
   newState.playlists[playlistID] = newPlaylist ?? {
     title: "New Playlist",
     songs: [],
   };
-  console.log(newState);
   return newState;
 }
 
 const addSong = (state, playlistID, songID) => {
   const newState = {...state};
-  newState.playlists[playlistID].songs.push(songID);
+  if (!newState.playlists[playlistID].songs.includes(songID)) {
+    newState.playlists[playlistID].songs.push(songID);
+  }
   return newState;
 }
 
 export const userDataReducer = (state, {type, ...payload}) => {
-  console.log(type, payload);
   switch (type) {
     case 'like-song':
       return likeSong(state, payload.song);

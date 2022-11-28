@@ -16,7 +16,7 @@ const searchSongs = (query) => {
 
 const selectRandSong = () => {
   const songs = Object.keys(possibleSongs);
-  const index = Math.round(Math.random() * songs.length);
+  const index = Math.floor(Math.random() * songs.length);
   return songs[index];
 }
 
@@ -26,8 +26,12 @@ export function PlaylistPage() {
   const { title, songs } = playlists[id];
 
   const addRandomSong = () => {
-    const song = selectRandSong();
-    dispatch({type: 'add-song', playlist: id, song});
+    if (songs.length < Object.keys(possibleSongs).length) {
+      do {
+        var song = selectRandSong();
+      } while (songs.includes(song));
+      dispatch({type: 'add-song', playlist: id, song});
+    }
   }
 
   return (
