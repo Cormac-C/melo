@@ -9,8 +9,12 @@ function App() {
   const [state, dispatch] = useReducer(
     userDataReducer,
     {
+      // Song player
+      queue: ["What's the Difference", "Mob Ties"],
+      currentSong: 0,
+      isPlaying: false,
+      // User info
       likedSongs: [],
-      currentSong: "What's the Difference",
       playlists: {
         0: {
           title: "Dummy Playlist",

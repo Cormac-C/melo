@@ -30,7 +30,7 @@ export function PlaylistPage() {
       do {
         var song = selectRandSong();
       } while (songs.includes(song));
-      dispatch({type: 'add-song', playlist: id, song});
+      dispatch({type: 'add-to-playlist', playlist: id, song});
     }
   }
 

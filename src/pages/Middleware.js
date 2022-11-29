@@ -11,7 +11,9 @@ export function MainPage({ children }) {
       <Sidebar />
       <div className="flex flex-col overflow-x-hidden w-screen">
         <Topbar />
-        {searchParams.get("q") ? <SearchResults /> : children}
+        <div className="pl-6">
+          {searchParams.get("q") ? <SearchResults /> : children}
+        </div>
       </div>
     </main>
   );
