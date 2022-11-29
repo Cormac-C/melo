@@ -128,7 +128,7 @@ export default class Music {
 
   // Get all albums, optionally 'by' an artist
   static getAlbums({by} = {}) {
-    if (by) return music[by];
+    if (by) return music[by].albums;
 
     let allAlbums = {};
     Object.entries(music).forEach(([artist, { albums }]) => {
@@ -147,7 +147,7 @@ export default class Music {
     if (from & !by) {
       var albums = Music.getAlbum(from);
     } else if (by & from) {
-      var albums = music[by][from];
+      var albums = music[by].albums[from];
     } else {
       var albums = Music.getAlbums({ by });
     }
