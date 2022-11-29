@@ -1,15 +1,17 @@
 import React, { useContext } from "react";
 import {
-  MdFavorite, MdAirplay, MdPlayCircle, MdShuffle,
+  MdAirplay, MdPlayCircle, MdShuffle,
   MdLoop, MdPauseCircle, MdSkipNext, MdSkipPrevious
 } from "react-icons/md";
+import { HeartIcon } from "./HeartIcon";
 import UserDataContext from "../context";
 import Music from "../Music";
 
 export function Player({className}) {
   const [{ queue, currentSong, isPlaying }, dispatch] = useContext(UserDataContext);
   if (queue.length && queue[currentSong]) {
-    var song = Music.getSong(queue[currentSong]);
+    var songID = queue[currentSong];
+    var song = Music.getSong(songID);
     var album = Music.getAlbum(song.album, {by: song.artist});
   }
 
@@ -43,15 +45,13 @@ export function Player({className}) {
           </button>
         </div>
       </div>
-      <div className="flex px-3 mb-3">
-        <div className="flex flex-col">
+      <div className="flex px-3 mb-3 space-x-4">
+        <div className="flex flex-col flex-1">
           <p className="text-lg">{song.title}</p>
           <p className="text-sm">{song.artist}</p>
         </div>
-        <div className="flex">
-          <MdAirplay />
-          <MdFavorite />
-        </div>
+        <MdAirplay className="text-2xl" />
+        <HeartIcon className="text-2xl" song={songID} />
       </div>
       <p className="text-center text-black bg-purple-light">
         Now Playing on <b>MyMacbook</b>

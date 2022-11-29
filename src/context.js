@@ -17,11 +17,12 @@ DATA STRUCTURE
 const likeSong = (state, songID) => {
   const newState = {...state};
   if (newState.likedSongs.includes(songID)) {
-    const index = newState.likedSongs.findIndex(songID);
-    newState.likedSongs.splice(index, index);
+    const index = newState.likedSongs.findIndex((song) => song === songID);
+    newState.likedSongs.splice(index, 1);
   } else {
     newState.likedSongs.push(songID);
   }
+  console.log(newState);
   return newState;
 }
 
