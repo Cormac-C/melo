@@ -1,19 +1,12 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import {
-  MdHomeFilled, MdLibraryMusic, MdFavorite, MdAirplay, 
-  MdShuffle, MdLoop, MdPauseCircle, MdSkipNext, MdSkipPrevious
-} from "react-icons/md";
+import { MdHomeFilled, MdLibraryMusic, MdFavorite } from "react-icons/md";
 import createPlaylist from "../assets/createPlaylist.svg";
 import UserDataContext from "../context";
-import Music from "../Music";
+import { Player } from "./Player";
 
 export function Sidebar() {
-  const [{ playlists, queue, currentSong }, dispatch] = useContext(UserDataContext);
-  if (queue.length && queue[currentSong]) {
-    var song = Music.getSong(queue[currentSong]);
-    var album = Music.getAlbum(song.album, {by: song.artist});
-  }
+  const [{ playlists }, dispatch] = useContext(UserDataContext);
 
   return (
     <>
@@ -89,36 +82,7 @@ export function Sidebar() {
               ))
             }
           </div>
-          {song && (
-            <div className="w-full flex flex-col justify-end bg-zinc-900 rounded-t-lg">
-              <div
-                className="m-3 w-1/1 aspect-square flex flex-col !bg-cover rounded-md"
-                style={{background: "url(" + require(`../assets/${album.photo}`) + ")"}}
-              >
-                <div className="flex-1" />
-                <div className="flex justify-center text-xl">
-                  <button onClick={() => {}}><MdShuffle /></button>
-                  <button onClick={() => dispatch({type: 'play-song', index: currentSong - 1})}><MdSkipPrevious /></button>
-                  <button onClick={() => dispatch({type: 'change-pause-status'})}><MdPauseCircle /></button>
-                  <button onClick={() => dispatch({type: 'play-song', index: currentSong + 1})}><MdSkipNext /></button>
-                  <button onClick={() => {}}><MdLoop /></button>
-                </div>
-              </div>
-              <div className="flex px-3 mb-3">
-                <div className="flex flex-col">
-                  <p className="text-lg">{song.title}</p>
-                  <p className="text-sm">{song.artist}</p>
-                </div>
-                <div className="flex">
-                  <MdAirplay />
-                  <MdFavorite />
-                </div>
-              </div>
-              <p className="text-center text-black bg-purple-light">
-                Now Playing on <b>MyMacbook</b>
-              </p>
-            </div>
-          )}
+          <Player />
         </div>
       </div>
     </>

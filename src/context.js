@@ -45,10 +45,12 @@ const addSong = (state, playlistID, songID) => {
 
 const playSong = (state, index) => {
   const newState = {...state};
-  if (0 <= index && index < newState.queue.length) {
+  if (0 <= index && index < state.queue.length) {
     newState.currentSong = index;
+    newState.isPlaying = true;
+  } else {
+    newState.isPlaying = false;
   }
-  newState.isPlaying = true;
   return newState;
 }
 const changePauseStatus = (state, status) => {
