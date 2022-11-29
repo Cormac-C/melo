@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserDataContext, { userDataReducer } from "./context";
-import { Signup, Login, Home, PlaylistPage, Account, Profile } from "./pages";
+import { Signup, Login, Home, PlaylistPage, Account, Profile, LikedSongs } from "./pages";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -36,6 +36,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
           <Route path="/list/:id" element={<PlaylistPage />} />
+          <Route path="/liked-songs" element={<LikedSongs />} />
           <Route path="/account" element={<Account />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>

@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import Form from "react-bootstrap/Form";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { MdSearch } from "react-icons/md";
 import { MainPage } from "./Middleware";
 import Music from "../Music";
 import UserDataContext from "../context";
+import { MusicList } from "../components/MusicList";
 
 const possibleSongs = Music.getSongs();
 
@@ -36,8 +37,7 @@ export function PlaylistPage() {
 
   return (
     <MainPage>
-      <div className="text-white text-left">
-        <h2>{ title }</h2>
+      <MusicList title={title} songs={songs}>
         <p>Search for songs to add to your playlist!</p>
         <div className="flex">
           <Form className="flex !text-gray-500">
@@ -56,32 +56,7 @@ export function PlaylistPage() {
             ADD SONGS FOR ME
           </button>
         </div>
-        <div className="grid grid-cols-4 pt-6">
-          <p className="text-zinc-500">Song title</p>
-          <p className="text-zinc-500">Album</p>
-          <p className="text-zinc-500">Date added</p>
-          <p className="text-zinc-500">Duration</p>
-          {songs.map(songID => (
-            <React.Fragment key={songID}>
-              <div className="flex pb-4">
-                <img className="w-16 pr-1" src={require("../assets/bieberAlbum.png")}></img>
-                <div className="flex flex-column">
-                  <p className="m-0">{ possibleSongs[songID].title }</p>
-                  <Link
-                    className="text-sm text-zinc-400 decoration-zinc-400"
-                    to={`/artist?artist=${possibleSongs[songID].artist}`}
-                  >
-                    { possibleSongs[songID].artist }
-                  </Link>
-                </div>
-              </div>
-              <p>{ possibleSongs[songID].album }</p>
-              <p>Nov 10, 2022</p>
-              <p>3:13</p>
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
+      </MusicList>
     </MainPage>
   );
 }

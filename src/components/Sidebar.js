@@ -24,7 +24,7 @@ export function Sidebar() {
           <MdLibraryMusic className="m-auto text-lg" />
           <p className="m-0">Your Library</p>
         </Link>
-        <Link className="text-white no-underline" to="/login">
+        <Link className="text-white no-underline" to="/liked-songs">
           <MdFavorite className="m-auto text-lg" />
           <p className="m-0">Liked Songs</p>
         </Link>
@@ -63,7 +63,7 @@ export function Sidebar() {
                     Your Library
                   </div>
                 </Link>
-                <Link className="text-white no-underline" to="/login">
+                <Link className="text-white no-underline" to="/liked-songs">
                   <div className="flex content-center space-x-3 py-2">
                     <MdFavorite className="my-auto" />
                     Liked Songs
