@@ -7,12 +7,21 @@ import { HeartIcon } from "./HeartIcon";
 import UserDataContext from "../context";
 import Music from "../Music";
 
+const audio = new Audio();
+
 export function Player({className}) {
   const [{ queue, currentSong, isPlaying }, dispatch] = useContext(UserDataContext);
   if (queue.length && queue[currentSong]) {
     var songID = queue[currentSong];
     var song = Music.getSong(songID);
     var album = Music.getAlbum(song.album, {by: song.artist});
+    audio.src = require(`../assets/songs/${song.file}`);
+  }
+
+  if (isPlaying) {
+    audio.play();
+  } else {
+    audio.pause();
   }
 
   if (!song) return <></>;
@@ -50,7 +59,7 @@ export function Player({className}) {
           <p className="text-lg">{song.title}</p>
           <p className="text-sm">{song.artist}</p>
         </div>
-        <MdAirplay className="text-2xl" />
+        <MdAirplay className="text-2xl my-auto" />
         <HeartIcon className="text-2xl" song={songID} />
       </div>
       <p className="text-center text-black bg-purple-light">

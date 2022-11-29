@@ -10,7 +10,7 @@ export function LikedSongs() {
     <MainPage>
       {likedSongs.length
         ? <MusicList title={"Liked Songs"} songs={likedSongs} />
-        : <h2>No liked songs yet :)</h2>}
+        : <h2 className="mt-20 flex justify-center">No liked songs yet :)</h2>}
     </MainPage>
   );
 }
