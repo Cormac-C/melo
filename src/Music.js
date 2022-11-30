@@ -18,7 +18,7 @@ const music = {
     photo: "",
     albums: {
       "Scorpion": {
-        photo: "bieberAlbum.png",
+        photo: "weekndAlbum.png",
         songs: [
           {
             id: "Mob Ties",
@@ -48,7 +48,7 @@ const music = {
     photo: "",
     albums: {
       "Stillmatic": {
-        photo: "bieberAlbum.png",
+        photo: "dojaAlbum.png",
         songs: [
           {
             id: "Ether",
@@ -73,7 +73,7 @@ const music = {
         ]
       },
       "Yeezus": {
-        photo: "bieberAlbum.png",
+        photo: "keemAlbum.png",
         songs: [
           {
             id: "Black Skinhead (Instrumental)",

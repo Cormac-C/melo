@@ -50,7 +50,7 @@ export function PlaylistPage() {
             />
           </Form>
           <button
-            className="rounded-full border px-3 border-purple-light bg-transparent"
+            className="rounded-full border px-3 border-purple-light bg-transparent max-sm:hidden"
             onClick={addRandomSong}
           >
             ADD SONGS FOR ME

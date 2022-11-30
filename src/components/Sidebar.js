@@ -11,23 +11,22 @@ export function Sidebar() {
   return (
     <>
       {/* Mobile */}
-      <div className="
-        sm:hidden absolute bottom-0 left-0 z-10
-        w-full py-2 grid grid-cols-3 bg-zinc-700
-        text-sm text-center text-gray
-      ">
-        <Link className="text-white no-underline" to="/">
-          <MdHomeFilled className="m-auto text-lg" />
-          <p className="m-0">Home</p>
-        </Link>
-        <Link className="text-white no-underline" to="/signup">
-          <MdLibraryMusic className="m-auto text-lg" />
-          <p className="m-0">Your Library</p>
-        </Link>
-        <Link className="text-white no-underline" to="/liked-songs">
-          <MdFavorite className="m-auto text-lg" />
-          <p className="m-0">Liked Songs</p>
-        </Link>
+      <div className="sm:hidden absolute bottom-0 left-0 z-10 w-full">
+        <Player />
+        <div className="grid grid-cols-3 bg-zinc-700 py-2 text-sm text-center text-gray">
+          <Link className="text-white no-underline" to="/">
+            <MdHomeFilled className="m-auto text-lg" />
+            <p className="m-0">Home</p>
+          </Link>
+          <Link className="text-white no-underline" to="/signup">
+            <MdLibraryMusic className="m-auto text-lg" />
+            <p className="m-0">Your Library</p>
+          </Link>
+          <Link className="text-white no-underline" to="/liked-songs">
+            <MdFavorite className="m-auto text-lg" />
+            <p className="m-0">Liked Songs</p>
+          </Link>
+        </div>
       </div>
       {/* Desktop */}
       <div className="max-sm:hidden w-42 md:w-72 h-full relative">
