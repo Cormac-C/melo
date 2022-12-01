@@ -7,3 +7,4 @@ export { Account } from "./Account";
 export { Profile } from "./Profile";
 export { Following } from "./Following";
 export { Follower } from "./Follower";
+export { ArtistPage } from "./ArtistPage";

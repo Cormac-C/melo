@@ -11,6 +11,7 @@ import {
   LikedSongs,
   Following,
   Follower,
+  ArtistPage,
 } from "./pages";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -48,6 +49,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/following" element={<Following />} />
           <Route path="/followers" element={<Follower />} />
+          <Route path="/artist/:id" element={<ArtistPage />} />
         </Routes>
       </Router>
     </UserDataContext.Provider>
