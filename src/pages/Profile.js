@@ -118,7 +118,7 @@ export function Profile() {
           <h1 className="text-white my-4">
             {user && user.name} {user && user.surname}
           </h1>
-          <p className="text-gray-300">5 Playlists</p>
+          <p className="text-gray-300 mb-4">5 Playlists</p>
 
           <Button className="!rounded-full !bg-slate-800 !border-purple-light !font-semibold mr-8">
             20 Followers
@@ -131,12 +131,12 @@ export function Profile() {
       <h2 className="text-white my-4">Your Most Played Songs</h2>
       <Row className="w-full mb-8">
         <div className="flex flex-row overflow-x-scroll space-x-4">
-          {playlists.map((playlist) => {
+          {songs.map((song) => {
             return (
               <VertCard
-                title={playlist.title}
-                subtitle={playlist.subtitle}
-                imgSrc={require(`../assets/${playlist.src}`)}
+                title={song.title}
+                subtitle={song.artist}
+                imgSrc={require(`../assets/${song.src}`)}
               />
             );
           })}
@@ -145,12 +145,11 @@ export function Profile() {
       <h2 className="text-white my-4">Your Most Played Artists</h2>
       <Row className="w-full mb-8">
         <div className="flex flex-row overflow-x-scroll space-x-4">
-          {playlists.map((playlist) => {
+          {albums.map((album) => {
             return (
               <VertCard
-                title={playlist.title}
-                subtitle={playlist.subtitle}
-                imgSrc={require(`../assets/${playlist.src}`)}
+                title={album.artist}
+                imgSrc={require(`../assets/${album.src}`)}
               />
             );
           })}
