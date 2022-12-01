@@ -1,41 +1,9 @@
 import { React, useState, useEffect } from "react";
 import { MainPage } from "./Middleware";
 import { Row, Image, Button } from "react-bootstrap";
-import { HorizCard, VertCard } from "../components";
+import { VertCard } from "../components";
 import sampleUser from "../assets/sampleUser.png";
-
-const playlists = [
-  {
-    title: "Car jamz everyone knows",
-    subtitle: "By Andrea Nicastro",
-    src: "playlistCover1.png",
-  },
-  {
-    title: "Shower Tunes",
-    subtitle: "My favourite songs to sing in the shower",
-    src: "playlistCover2.png",
-  },
-  {
-    title: "Car jamz everyone knows",
-    subtitle: "By Andrea Nicastro",
-    src: "playlistCover1.png",
-  },
-  {
-    title: "Shower Tunes",
-    subtitle: "My favourite songs to sing in the shower",
-    src: "playlistCover2.png",
-  },
-  {
-    title: "Car jamz everyone knows",
-    subtitle: "By Andrea Nicastro",
-    src: "playlistCover1.png",
-  },
-  {
-    title: "Shower Tunes",
-    subtitle: "My favourite songs to sing in the shower",
-    src: "playlistCover2.png",
-  },
-];
+import { useNavigate } from "react-router-dom";
 
 const albums = [
   {
@@ -95,6 +63,8 @@ const songs = [
 export function Profile() {
   const [user, setUser] = useState();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     try {
       if (localStorage.getItem("currentUser")) {
@@ -120,10 +90,16 @@ export function Profile() {
           </h1>
           <p className="text-gray-300 mb-4">5 Playlists</p>
 
-          <Button className="!rounded-full !bg-slate-800 !border-purple-light !font-semibold mr-8">
+          <Button
+            className="!rounded-full !bg-slate-800 !border-purple-light !font-semibold mr-8"
+            onClick={() => navigate("/followers")}
+          >
             20 Followers
           </Button>
-          <Button className="!rounded-full !bg-slate-800 !border-purple-light !font-semibold mr-8">
+          <Button
+            className="!rounded-full !bg-slate-800 !border-purple-light !font-semibold mr-8"
+            onClick={() => navigate("/following")}
+          >
             3 Following
           </Button>
         </div>

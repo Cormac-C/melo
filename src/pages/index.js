@@ -5,3 +5,5 @@ export { LikedSongs } from "./LikedSongs";
 export { PlaylistPage } from "./PlaylistPage";
 export { Account } from "./Account";
 export { Profile } from "./Profile";
+export { Following } from "./Following";
+export { Follower } from "./Follower";

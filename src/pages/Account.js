@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function Account() {
   const [name, setName] = useState("");
