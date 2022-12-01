@@ -19,8 +19,8 @@ export function ArtistPage() {
     <MainPage>
       <Row>
         <Image
-          src={artist.photo}
-          className="!w-1/4 p-4 h-auto"
+          src={require(`../assets/${artist.photo}`)}
+          className="!w-64 p-4 !h-64"
           roundedCircle={true}
         />
         <div className="!w-1/2 my-auto">

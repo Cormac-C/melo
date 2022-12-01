@@ -1,36 +1,36 @@
 const music = {
   "Dr. Dre": {
-    photo: "",
+    photo: "drdre.jpg",
     albums: {
-      "2001": {
+      2001: {
         photo: "bieberAlbum.png",
         songs: [
           {
             id: "What's the Difference",
             title: "What's the Difference",
-            file: "What's the Difference.mp3"
-          }
-        ]
-      }
-    }
+            file: "What's the Difference.mp3",
+          },
+        ],
+      },
+    },
   },
-  "Drake": {
-    photo: "",
+  Drake: {
+    photo: "drake.jpg",
     albums: {
-      "Scorpion": {
+      Scorpion: {
         photo: "weekndAlbum.png",
         songs: [
           {
             id: "Mob Ties",
             title: "Mob Ties",
-            file: "Mob Ties.mp3"
-          }
-        ]
-      }
-    }
+            file: "Mob Ties.mp3",
+          },
+        ],
+      },
+    },
   },
   "J. Cole": {
-    photo: "",
+    photo: "jcole.jpg",
     albums: {
       "2014 Forest Hill Drive": {
         photo: "bieberAlbum.png",
@@ -38,29 +38,29 @@ const music = {
           {
             id: "G.O.M.D.",
             title: "G.O.M.D.",
-            file: "G.O.M.D..mp3"
-          }
-        ]
-      }
-    }
+            file: "G.O.M.D..mp3",
+          },
+        ],
+      },
+    },
   },
-  "Nas": {
-    photo: "",
+  Nas: {
+    photo: "nas.jpg",
     albums: {
-      "Stillmatic": {
+      Stillmatic: {
         photo: "dojaAlbum.png",
         songs: [
           {
             id: "Ether",
             title: "Ether",
-            file: "Ether.mp3"
-          }
-        ]
-      }
-    }
+            file: "Ether.mp3",
+          },
+        ],
+      },
+    },
   },
-  "Kanye": {
-    photo: "",
+  Kanye: {
+    photo: "kanye.jpg",
     albums: {
       "My Beautiful Dark Twisted Fantasy": {
         photo: "bieberAlbum.png",
@@ -68,22 +68,22 @@ const music = {
           {
             id: "POWER",
             title: "POWER",
-            file: "POWER.mp3"
-          }
-        ]
+            file: "POWER.mp3",
+          },
+        ],
       },
-      "Yeezus": {
+      Yeezus: {
         photo: "keemAlbum.png",
         songs: [
           {
             id: "Black Skinhead (Instrumental)",
             title: "Black Skinhead (Instrumental)",
-            file: "Black Skinhead (Instrumental).mp3"
-          }
-        ]
-      }
-    }
-  }
+            file: "Black Skinhead (Instrumental).mp3",
+          },
+        ],
+      },
+    },
+  },
 };
 
 export default class Music {
@@ -91,9 +91,9 @@ export default class Music {
     return music[artist];
   }
 
-  static getAlbum(album, {by} = {}) {
+  static getAlbum(album, { by } = {}) {
     if (by) {
-      return {...music[by].albums[album], artist: by};
+      return { ...music[by].albums[album], artist: by };
     }
     Object.entries(music).forEach(([artist, { albums }]) => {
       if (Object.keys(albums).includes(album)) {
@@ -102,21 +102,21 @@ export default class Music {
     });
   }
 
-  static getSong(songID, {by, from} = {}) {
+  static getSong(songID, { by, from } = {}) {
     let foundSong;
     if (by && from) {
-      return {...music[by].albums[from], artist: by, album: from};
+      return { ...music[by].albums[from], artist: by, album: from };
     } else if (by) {
       Object.entries(music[by].albums).forEach(function ([album, { songs }]) {
-        const song = songs.find(({id}) => id === songID);
+        const song = songs.find(({ id }) => id === songID);
         if (song) foundSong = { ...song, artist: by, album };
-      })
+      });
     } else {
       Object.entries(music).forEach(function ([artist, { albums }]) {
         Object.entries(albums).forEach(function ([album, { songs }]) {
-          const song = songs.find(({id}) => id === songID);
+          const song = songs.find(({ id }) => id === songID);
           if (song) foundSong = { ...song, artist, album };
-        })
+        });
       });
     }
     return foundSong;
@@ -127,23 +127,27 @@ export default class Music {
   }
 
   // Get all albums, optionally 'by' an artist
-  static getAlbums({by} = {}) {
+  static getAlbums({ by } = {}) {
     if (by) return music[by].albums;
 
     let allAlbums = {};
     Object.entries(music).forEach(([artist, { albums }]) => {
-      allAlbums = { // TODO: Inefficient
+      allAlbums = {
+        // TODO: Inefficient
         ...allAlbums,
         ...Object.fromEntries(
-          Object.entries(albums)
-            .map(([title, album]) => ([title, {...album, artist}])) // Add artist to the song album data
-        )};
+          Object.entries(albums).map(([title, album]) => [
+            title,
+            { ...album, artist },
+          ]) // Add artist to the song album data
+        ),
+      };
     });
     return allAlbums;
   }
 
   // Get all songs, optionally 'by' an artist or 'from' an album
-  static getSongs({by, from} = {}) {
+  static getSongs({ by, from } = {}) {
     if (from & !by) {
       var albums = Music.getAlbum(from);
     } else if (by & from) {
@@ -154,11 +158,13 @@ export default class Music {
 
     return Object.fromEntries(
       Object.entries(albums)
-        .map(([album, { artist, songs }]) => // Parse out 'songs' from the album
-          songs.map(song => ({...song, album, artist})) // Add album/artist as an attribute to each song
+        .map(
+          (
+            [album, { artist, songs }] // Parse out 'songs' from the album
+          ) => songs.map((song) => ({ ...song, album, artist })) // Add album/artist as an attribute to each song
         )
         .flat() // Flatten all albums into a 1D array of songs
-        .map(song => [song.id, {...song }]) // Select 'id' as the key
+        .map((song) => [song.id, { ...song }]) // Select 'id' as the key
     );
   }
 }
