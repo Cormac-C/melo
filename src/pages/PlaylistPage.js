@@ -10,16 +10,16 @@ import { MusicList } from "../components/MusicList";
 const possibleSongs = Music.getSongs();
 
 const searchSongs = (query) => {
-  return Object.values(possibleSongs).filter(
-    ({ title }) => title.toLowerCase().includes(query.toLowerCase())
+  return Object.values(possibleSongs).filter(({ title }) =>
+    title.toLowerCase().includes(query.toLowerCase())
   );
-}
+};
 
 const selectRandSong = () => {
   const songs = Object.keys(possibleSongs);
   const index = Math.floor(Math.random() * songs.length);
   return songs[index];
-}
+};
 
 export function PlaylistPage() {
   let { id } = useParams();
@@ -31,13 +31,13 @@ export function PlaylistPage() {
       do {
         var song = selectRandSong();
       } while (songs.includes(song));
-      dispatch({type: 'add-to-playlist', playlist: id, song});
+      dispatch({ type: "add-to-playlist", playlist: id, song });
     }
-  }
+  };
 
   return (
     <MainPage>
-      <MusicList title={title} songs={songs}>
+      <MusicList title={title} songs={songs} page="playlist">
         <p>Search for songs to add to your playlist!</p>
         <div className="flex">
           <Form className="flex !text-gray-500">

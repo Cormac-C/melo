@@ -13,7 +13,7 @@ import UserDataContext from "../context";
 
 const possibleSongs = Music.getSongs();
 
-function Song({ songID, showOptions }) {
+function Song({ songID, showOptions, page }) {
   const song = possibleSongs[songID];
 
   return (
@@ -53,7 +53,11 @@ function Song({ songID, showOptions }) {
           </div>
         </div>
         <p className="max-sm:hidden">{song.album}</p>
-        <p className="max-sm:hidden">Nov 10, 2022</p>
+        {page === "playlist" ? (
+          <p className="max-sm:hidden">Nov 10, 2022</p>
+        ) : (
+          <p className="max-sm:hidden">12300</p>
+        )}
         <p className="max-sm:hidden">3:13</p>
       </>
     </>
@@ -105,7 +109,7 @@ function SongOptionsMenu({ shownSong, closeMenu }) {
 }
 
 export function MusicList(
-  { title, songs, children } = { title: "", songs: [] }
+  { title, songs, children, page } = { title: "", songs: [] }
 ) {
   const [shownSong, setShownSong] = useState(null);
 
@@ -120,7 +124,7 @@ export function MusicList(
       {/* Mobile */}
       <div className="sm:hidden">
         {songs.map((songID) => (
-          <Song songID={songID} showOptions={shownSongOptions} />
+          <Song songID={songID} showOptions={shownSongOptions} page={page} />
         ))}
         {shownSong && (
           <SongOptionsMenu
@@ -133,10 +137,14 @@ export function MusicList(
       <div className="max-sm:hidden grid grid-cols-[repeat(3,1fr)_min-content] p-6">
         <p className="text-zinc-500">Song title</p>
         <p className="text-zinc-500">Album</p>
-        <p className="text-zinc-500">Date added</p>
+        {page === "playlist" ? (
+          <p className="text-zinc-500">Date added</p>
+        ) : (
+          <p className="text-zinc-500">No of Listeners</p>
+        )}
         <p className="text-zinc-500">Duration</p>
         {songs.map((songID) => (
-          <Song key={songID} songID={songID} />
+          <Song key={songID} songID={songID} page={page} />
         ))}
       </div>
     </div>
