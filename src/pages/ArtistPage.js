@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { MainPage } from "./Middleware";
 import { Row, Image, Button } from "react-bootstrap";
 import { VertCard } from "../components";
+import UserDataContext from "../context";
 
 import Music from "../Music";
 import { MusicList } from "../components/MusicList";
@@ -25,11 +26,13 @@ const concerts = [
 ];
 
 export function ArtistPage() {
+  const [{ followedArtists }, dispatch] = useContext(UserDataContext);
   let { id } = useParams();
   const artist = artists[id];
 
   const songs = Music.getSongs({ by: id });
   const [showConcerts, setShowConcerts] = useState(false);
+  const [followed, setFollowed] = useState(followedArtists.includes(id));
 
   return (
     <MainPage>
@@ -42,8 +45,14 @@ export function ArtistPage() {
           <h1 className="text-white my-4">{id}</h1>
           <p className="text-gray-300 mb-4">67 bajillion monthly listeners</p>
 
-          <Button className="!rounded-full !bg-slate-800 !border-purple-light !font-semibold mr-8">
-            Follow
+          <Button
+            className="!rounded-full !bg-slate-800 !border-purple-light !font-semibold mr-8"
+            onClick={() => {
+              setFollowed(!followed);
+              dispatch({ type: "follow-artist", artist: id });
+            }}
+          >
+            {followed ? "Following" : "Follow"}
           </Button>
           <Button
             className="!rounded-full !bg-slate-800 !border-purple-light !font-semibold mr-8"

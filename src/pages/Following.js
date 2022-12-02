@@ -1,14 +1,24 @@
-import { React } from "react";
+import React, { useContext } from "react";
 import { MainPage } from "./Middleware";
 import { Row } from "react-bootstrap";
 import { VertCard } from "../components";
+import UserDataContext from "../context";
+import Music from "../Music";
 
-const following = [
-  { name: "Andrea Nicastro", src: "andrea.png" },
-  { name: "Gary Kang", src: "gary.png" },
-];
+const artists = Music.getArtists();
 
 export function Following() {
+  const following = [
+    { name: "Andrea Nicastro", src: "andrea.png" },
+    { name: "Gary Kang", src: "gary.png" },
+  ];
+
+  const [{ followedArtists }] = useContext(UserDataContext);
+
+  for (const artist of followedArtists) {
+    following.push({ name: artist, src: artists[artist].photo });
+  }
+
   return (
     <MainPage>
       <h2 className="text-white my-4">Your Following</h2>

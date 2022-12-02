@@ -24,6 +24,7 @@ function App() {
     isPlaying: false,
     // User info
     likedSongs: [],
+    followedArtists: [],
     playlists: {
       0: {
         title: "Dummy Playlist",
