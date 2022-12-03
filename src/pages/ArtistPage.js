@@ -95,14 +95,12 @@ export function ArtistPage() {
               {concerts.map((concert) => {
                 if (showLocal && concert.city !== "Madrid") return null;
                 return (
-                  <>
-                    <VertCard
-                      title={concert.city + "-" + concert.date}
-                      subtitle={concert.venue}
-                      imgSrc={require(`../assets/${concert.src}`)}
-                      key={concert.city}
-                    />
-                  </>
+                  <VertCard
+                    title={concert.city + "-" + concert.date}
+                    subtitle={concert.venue}
+                    imgSrc={require(`../assets/${concert.src}`)}
+                    key={concert.city}
+                  />
                 );
               })}
             </div>
