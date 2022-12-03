@@ -11,6 +11,7 @@ import {
 import { HeartIcon } from "./HeartIcon";
 import UserDataContext from "../context";
 import Music from "../Music";
+import { Link } from "react-router-dom";
 
 const audio = new Audio();
 
@@ -104,7 +105,12 @@ export function Player({ className }) {
         <div className="flex px-3 mb-3 space-x-4">
           <div className="flex flex-col flex-1">
             <p className="text-lg">{song.title}</p>
-            <p className="text-sm">{song.artist}</p>
+            <Link
+              className="text-sm text-white no-underline"
+              to={`/artist/${song.artist}`}
+            >
+              {song.artist}
+            </Link>
           </div>
           <MdAirplay className="text-2xl my-auto" />
           <HeartIcon className="text-2xl" song={songID} />
