@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { MainPage } from "./Middleware";
-import { Row, Image, Button } from "react-bootstrap";
+import { Row, Image, Button, ToggleButton } from "react-bootstrap";
 import { VertCard } from "../components";
 import UserDataContext from "../context";
 
@@ -23,6 +23,12 @@ const concerts = [
     venue: "Stade de France",
     src: "paris.jpeg",
   },
+  {
+    city: "Madrid",
+    date: "12/30",
+    venue: "Santiago Bernabeu",
+    src: "madrid.jpg",
+  },
 ];
 
 export function ArtistPage() {
@@ -32,6 +38,7 @@ export function ArtistPage() {
 
   const songs = Music.getSongs({ by: id });
   const [showConcerts, setShowConcerts] = useState(false);
+  const [showLocal, setShowLocal] = useState(false);
   const [followed, setFollowed] = useState(followedArtists.includes(id));
 
   return (
@@ -46,7 +53,11 @@ export function ArtistPage() {
           <p className="text-gray-300 mb-4">67 bajillion monthly listeners</p>
 
           <Button
-            className="!rounded-full !bg-slate-800 !border-purple-light !font-semibold mr-8"
+            className={
+              followed
+                ? "!rounded-full  text-white !font-semibold mr-8 !border-purple-light !bg-purple-light"
+                : "!rounded-full !bg-slate-800 text-white !font-semibold mr-8 !border-purple-light"
+            }
             onClick={() => {
               setFollowed(!followed);
               dispatch({ type: "follow-artist", artist: id });
@@ -55,7 +66,11 @@ export function ArtistPage() {
             {followed ? "Following" : "Follow"}
           </Button>
           <Button
-            className="!rounded-full !bg-slate-800 !border-purple-light !font-semibold mr-8"
+            className={
+              showConcerts
+                ? "!rounded-full  text-white !font-semibold mr-8 !border-purple-light !bg-purple-light"
+                : "!rounded-full !bg-slate-800 text-white !font-semibold mr-8 !border-purple-light"
+            }
             onClick={() => setShowConcerts(!showConcerts)}
           >
             Upcoming Concerts
@@ -65,9 +80,20 @@ export function ArtistPage() {
       {showConcerts && (
         <div>
           <h2 className="text-white my-4">Upcoming Concerts</h2>
+          <ToggleButton
+            className={
+              showLocal
+                ? "!rounded-full  text-white !font-semibold mr-8 !border-purple-light !bg-purple-light"
+                : "!rounded-full !bg-slate-800 text-white !font-semibold mr-8 !border-purple-light"
+            }
+            onClick={() => setShowLocal(!showLocal)}
+          >
+            {showLocal ? "Showing Nearby" : "Show Nearby"}
+          </ToggleButton>
           <Row className="w-full mb-8">
             <div className="flex flex-row overflow-x-scroll space-x-4">
               {concerts.map((concert) => {
+                if (showLocal && concert.city !== "Madrid") return null;
                 return (
                   <>
                     <VertCard
