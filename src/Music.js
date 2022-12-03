@@ -148,12 +148,13 @@ export default class Music {
 
   // Get all songs, optionally 'by' an artist or 'from' an album
   static getSongs({ by, from } = {}) {
+    let albums;
     if (from & !by) {
-      var albums = Music.getAlbum(from);
+      albums = Music.getAlbum(from);
     } else if (by & from) {
-      var albums = music[by].albums[from];
+      albums = music[by].albums[from];
     } else {
-      var albums = Music.getAlbums({ by });
+      albums = Music.getAlbums({ by });
     }
 
     return Object.fromEntries(

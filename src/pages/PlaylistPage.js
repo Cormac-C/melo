@@ -9,11 +9,11 @@ import { MusicList } from "../components/MusicList";
 
 const possibleSongs = Music.getSongs();
 
-const searchSongs = (query) => {
-  return Object.values(possibleSongs).filter(({ title }) =>
-    title.toLowerCase().includes(query.toLowerCase())
-  );
-};
+// const searchSongs = (query) => {
+//   return Object.values(possibleSongs).filter(({ title }) =>
+//     title.toLowerCase().includes(query.toLowerCase())
+//   );
+// };
 
 const selectRandSong = () => {
   const songs = Object.keys(possibleSongs);

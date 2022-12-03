@@ -16,6 +16,7 @@ import { Image } from "react-bootstrap";
 import sampleUser from "../assets/sampleUser.png";
 
 export function Topbar() {
+  // eslint-disable-next-line
   let [searchParams, setSearchParams] = useSearchParams();
 
   const navigate = useNavigate();
@@ -45,6 +46,7 @@ export function Topbar() {
     } catch (error) {
       console.log(error);
     }
+    // eslint-disable-next-line
   }, []);
 
   return (

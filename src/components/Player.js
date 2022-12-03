@@ -1,7 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import {
-  MdAirplay, MdPlayCircle, MdShuffle,
-  MdLoop, MdPauseCircle, MdSkipNext, MdSkipPrevious
+  MdAirplay,
+  MdPlayCircle,
+  MdShuffle,
+  MdLoop,
+  MdPauseCircle,
+  MdSkipNext,
+  MdSkipPrevious,
 } from "react-icons/md";
 import { HeartIcon } from "./HeartIcon";
 import UserDataContext from "../context";
@@ -9,16 +14,18 @@ import Music from "../Music";
 
 const audio = new Audio();
 
-export function Player({className}) {
-  const [{ queue, currentSong, isPlaying }, dispatch] = useContext(UserDataContext);
+export function Player({ className }) {
+  const [{ queue, currentSong, isPlaying }, dispatch] =
+    useContext(UserDataContext);
   if (queue.length && queue[currentSong]) {
     var songID = queue[currentSong];
     var song = Music.getSong(songID);
-    var album = Music.getAlbum(song.album, {by: song.artist});
+    var album = Music.getAlbum(song.album, { by: song.artist });
   }
 
   useEffect(() => {
     audio.src = require(`../assets/songs/${song.file}`);
+    // eslint-disable-next-line
   }, [queue, currentSong]);
 
   if (isPlaying) {
@@ -33,39 +40,60 @@ export function Player({className}) {
     <>
       {/* Mobile */}
       <div className="sm:hidden w-full bg-zinc-900 flex content-center p-1">
-        <img className="w-14 pr-2" src={require(`../assets/${album.photo}`)} />
+        <img
+          className="w-14 pr-2"
+          src={require(`../assets/${album.photo}`)}
+          alt="album cover"
+        />
         <div className="flex flex-col flex-1">
           <p className="text-lg">{song.title}</p>
           <p className="text-sm">{song.artist}</p>
         </div>
-        <button onClick={() => dispatch({type: 'change-pause-status'})}>
-          {isPlaying
-            ? <MdPauseCircle className="text-4xl" />
-            : <MdPlayCircle className="text-4xl" />
-          }
+        <button onClick={() => dispatch({ type: "change-pause-status" })}>
+          {isPlaying ? (
+            <MdPauseCircle className="text-4xl" />
+          ) : (
+            <MdPlayCircle className="text-4xl" />
+          )}
         </button>
       </div>
       {/* Desktop */}
-      <div className={"max-sm:hidden w-full flex flex-col justify-end bg-zinc-900 rounded-t-lg " + className}>
+      <div
+        className={
+          "max-sm:hidden w-full flex flex-col justify-end bg-zinc-900 rounded-t-lg " +
+          className
+        }
+      >
         <div
           className="m-3 w-1/1 aspect-square flex flex-col !bg-cover rounded-md transition-all"
-          style={{background: "url(" + require(`../assets/${album.photo}`) + ")"}}
+          style={{
+            background: "url(" + require(`../assets/${album.photo}`) + ")",
+          }}
         >
           <div className="flex-1" />
           <div className="flex justify-evenly text-5xl pb-2">
             <button onClick={() => {}}>
               <MdShuffle className="text-2xl" />
             </button>
-            <button onClick={() => dispatch({type: 'play-song', index: currentSong - 1})}>
+            <button
+              onClick={() =>
+                dispatch({ type: "play-song", index: currentSong - 1 })
+              }
+            >
               <MdSkipPrevious className="bg-white rounded-full border-4 border-gray-500 opacity-80 text-black p-1 text-4xl" />
             </button>
-            <button onClick={() => dispatch({type: 'change-pause-status'})}>
-              {isPlaying
-                ? <MdPauseCircle className="bg-purple-default rounded-full" />
-                : <MdPlayCircle className="bg-purple-default rounded-full" />
-              }
+            <button onClick={() => dispatch({ type: "change-pause-status" })}>
+              {isPlaying ? (
+                <MdPauseCircle className="bg-purple-default rounded-full" />
+              ) : (
+                <MdPlayCircle className="bg-purple-default rounded-full" />
+              )}
             </button>
-            <button onClick={() => dispatch({type: 'play-song', index: currentSong + 1})}>
+            <button
+              onClick={() =>
+                dispatch({ type: "play-song", index: currentSong + 1 })
+              }
+            >
               <MdSkipNext className="bg-white rounded-full border-4 border-gray-500 opacity-80 text-black p-1 text-4xl" />
             </button>
             <button onClick={() => {}}>

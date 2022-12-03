@@ -37,17 +37,19 @@ export function Sidebar() {
               <h1 className="text-3xl">melo</h1>
             </div>
             <button
-              onClick={() => dispatch('create-playlist')}
+              onClick={() => dispatch("create-playlist")}
               className="w-full flex justify-evenly p-2 rounded bg-violet-700 hover:bg-violet-800"
             >
               <img src={createPlaylist} alt="Create Playlist" />
               Create Playlist
             </button>
           </div>
-          <div className="
+          <div
+            className="
             flex flex-col p-4 pt-0 space-y-6 overflow-auto
             scrollbar-thin scrollbar-thumb-gray-600 scrollbar-thumb-rounded
-          ">
+          "
+          >
             <nav>
               <ul className="p-0 m-0">
                 <Link className="text-white no-underline" to="/">
@@ -71,15 +73,13 @@ export function Sidebar() {
               </ul>
             </nav>
             <div className="border-top"></div>
-            {
-              Object.entries(playlists).map(([id, { title }]) => (
-                <div key={id}>
-                  <Link className="text-white no-underline" to={`/list/${id}`}>
-                    {title}
-                  </Link>
-                </div>
-              ))
-            }
+            {Object.entries(playlists).map(([id, { title }]) => (
+              <div key={id}>
+                <Link className="text-white no-underline" to={`/list/${id}`}>
+                  {title}
+                </Link>
+              </div>
+            ))}
           </div>
           <Player />
         </div>
