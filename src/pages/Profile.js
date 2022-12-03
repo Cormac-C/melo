@@ -80,7 +80,7 @@ export function Profile() {
     <MainPage>
       <Row>
         <Image
-          src={sampleUser}
+          src={user && user.profilePic ? user.profilePic : sampleUser}
           className="!w-1/4 p-4 h-auto"
           roundedCircle={true}
         />

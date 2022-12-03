@@ -7,6 +7,7 @@ export function Account() {
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [dob, setDob] = useState("");
+  const [profilePic, setProfilePic] = useState("");
 
   useEffect(() => {
     try {
@@ -16,6 +17,7 @@ export function Account() {
         setSurname(user.surname);
         setEmail(user.email);
         setDob(user.dob);
+        setProfilePic(user.profilePic);
       }
     } catch (error) {
       console.log(error);
@@ -24,13 +26,23 @@ export function Account() {
 
   const navigate = useNavigate();
 
+  function encodeImage(userCookie, file) {
+    var reader = new FileReader();
+    reader.onloadend = function () {
+      userCookie["profilePic"] = reader.result.length > 5 ? reader.result : "";
+      localStorage.setItem(userCookie.username, JSON.stringify(userCookie));
+      localStorage.setItem("currentUser", JSON.stringify(userCookie));
+    };
+    reader.readAsDataURL(file);
+  }
+
   const editAccount = (e) => {
     e.preventDefault();
     const userCookie = {};
     const formData = new FormData(e.target);
     for (var [key, value] of formData.entries()) {
       if (key === "profilePic") {
-        // userCookie[key] = encodeImage(userCookie, value);
+        userCookie[key] = encodeImage(userCookie, value);
       } else {
         userCookie[key] = value;
       }
@@ -113,7 +125,13 @@ export function Account() {
               Profile Image
               <span className="text-gray-600">(optional)</span>
             </Form.Label>
-            <Form.Control name="profilePic" type="file" size="sm" />
+            <Form.Control
+              name="profilePic"
+              type="file"
+              size="sm"
+              accept="image/png, image/jpeg, image/jpg"
+              defaultValue={profilePic}
+            />
           </Form.Group>
         </div>
 

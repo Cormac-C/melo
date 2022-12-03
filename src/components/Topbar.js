@@ -82,7 +82,11 @@ export function Topbar() {
             />
           </Form>
           <div className="!bg-zinc-800 !rounded-full flex flex-row">
-            <Image src={sampleUser} className="h-8 m-1" roundedCircle={true} />
+            <Image
+              src={user && user.profilePic ? user.profilePic : sampleUser}
+              className="h-8 m-1"
+              roundedCircle={true}
+            />
             <NavDropdown
               title={user && `${user.name} ${user.surname}`}
               id="navbarScrollingDropdown"
