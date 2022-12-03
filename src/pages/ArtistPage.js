@@ -100,6 +100,7 @@ export function ArtistPage() {
                       title={concert.city + "-" + concert.date}
                       subtitle={concert.venue}
                       imgSrc={require(`../assets/${concert.src}`)}
+                      key={concert.city}
                     />
                   </>
                 );
@@ -119,13 +120,12 @@ export function ArtistPage() {
             artist.albums &&
             Object.keys(artist.albums).map((album) => {
               return (
-                <>
-                  <VertCard
-                    title={album}
-                    subtitle={id}
-                    imgSrc={require(`../assets/${artist.albums[album].photo}`)}
-                  />
-                </>
+                <VertCard
+                  title={album}
+                  subtitle={id}
+                  imgSrc={require(`../assets/${artist.albums[album].photo}`)}
+                  key={album}
+                />
               );
             })}
         </div>

@@ -21,6 +21,7 @@ function Song({ songID, showOptions, page }) {
       {/* Mobile */}
       <div className="sm:hidden flex mt-3 mr-3">
         <img
+          alt="album cover"
           className="w-12 pr-2"
           src={require("../assets/bieberAlbum.png")}
         ></img>
@@ -39,6 +40,7 @@ function Song({ songID, showOptions, page }) {
       <>
         <div className="max-sm:hidden flex pb-4">
           <img
+            alt="album cover"
             className="w-16 pr-1"
             src={require("../assets/bieberAlbum.png")}
           ></img>
@@ -65,8 +67,7 @@ function Song({ songID, showOptions, page }) {
 }
 
 function SongOptionsMenu({ shownSong, closeMenu }) {
-  const [_, dispatch] = useContext(UserDataContext);
-  const song = possibleSongs[shownSong];
+  const [dispatch] = useContext(UserDataContext);
 
   const likeShownSong = () => {
     dispatch({ type: "like-song", song: shownSong });
@@ -124,7 +125,12 @@ export function MusicList(
       {/* Mobile */}
       <div className="sm:hidden">
         {songs.map((songID) => (
-          <Song songID={songID} showOptions={shownSongOptions} page={page} />
+          <Song
+            key={songID}
+            songID={songID}
+            showOptions={shownSongOptions}
+            page={page}
+          />
         ))}
         {shownSong && (
           <SongOptionsMenu
