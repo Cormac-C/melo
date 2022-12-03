@@ -59,6 +59,9 @@ export function Signup() {
             name="password"
             type="text"
             placeholder="Password"
+            minLength={6}
+            maxlength={10}
+            pattern="[a-z0-9]{1,10}"
             required
           />
         </Form.Group>
