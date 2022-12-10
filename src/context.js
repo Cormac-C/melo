@@ -64,8 +64,16 @@ const playSong = (state, index) => {
   } else {
     newState.isPlaying = false;
   }
+  console.log(newState);
   return newState;
 };
+const setQueue = (state, songs) => {
+  const newState = { ...state };
+  newState.queue = songs;
+  newState.isPlaying = false;
+  newState.currentSong = 0;
+  return newState;
+}
 const changePauseStatus = (state, status) => {
   const newState = { ...state };
   newState.isPlaying = status ?? !newState.isPlaying;
@@ -92,6 +100,8 @@ export const userDataReducer = (state, { type, ...payload }) => {
       return playSong(state, payload.index);
     case "change-pause-status":
       return changePauseStatus(state, payload.status);
+    case "set-queue":
+      return setQueue(state, payload.songs);
     case "add-to-queue":
       return addToQueue(state, payload.song);
     default:
