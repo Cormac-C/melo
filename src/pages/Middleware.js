@@ -7,7 +7,7 @@ export function MainPage({ children }) {
   let [searchParams] = useSearchParams();
 
   return (
-    <main className="App text-white w-screen h-screen flex flex-row bg-zinc-800">
+    <main className="App text-white w-screen h-[90vh] flex flex-row bg-zinc-800 sm:h-screen">
       <Sidebar />
       <div className="flex flex-col overflow-x-hidden w-screen">
         <Topbar />

@@ -81,15 +81,16 @@ export function Profile() {
       <Row>
         <Image
           src={user && user.profilePic ? user.profilePic : sampleUser}
-          className="!w-1/4 p-4 h-auto"
+          className="!w-1/2 md:!w-1/4 p-4 h-auto"
           roundedCircle={true}
         />
-        <div className="!w-1/2 my-auto">
+        <div className="!w-1/2 md:!w-3/4 my-auto">
           <h1 className="text-white my-4">
             {user && user.name} {user && user.surname}
           </h1>
           <p className="text-gray-300 mb-4">5 Playlists</p>
-
+        </div>
+        <div className="flex justify-around">
           <Button
             className="!rounded-full !bg-slate-800 !border-purple-light !font-semibold mr-8"
             onClick={() => navigate("/followers")}
