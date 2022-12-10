@@ -18,7 +18,7 @@ export function Sidebar() {
             <MdHomeFilled className="m-auto text-lg" />
             <p className="m-0">Home</p>
           </Link>
-          <Link className="text-white no-underline" to="/signup">
+          <Link className="text-white no-underline" to="/profile">
             <MdLibraryMusic className="m-auto text-lg" />
             <p className="m-0">Your Library</p>
           </Link>
@@ -58,7 +58,7 @@ export function Sidebar() {
                     Home
                   </div>
                 </Link>
-                <Link className="text-white no-underline" to="/signup">
+                <Link className="text-white no-underline" to="/profile">
                   <div className="flex content-center space-x-3 py-2">
                     <MdLibraryMusic className="my-auto" />
                     Your Library
