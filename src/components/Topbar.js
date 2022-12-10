@@ -61,17 +61,17 @@ export function Topbar() {
         <Navbar.Collapse id="navbarScroll">
           <Button
             onClick={() => navigate(-1)}
-            className="!bg-zinc-800 !rounded-full !border-white !p-1.5 mx-2"
+            className="!hidden md:inline-block !bg-zinc-800 !rounded-full !border-white !p-1.5 mx-2"
           >
             <MdOutlineChevronLeft />
           </Button>
           <Button
             onClick={() => navigate(1)}
-            className="!bg-zinc-800 !rounded-full !border-white !p-1.5 mx-2"
+            className="!hidden md:inline-block !bg-zinc-800 !rounded-full !border-white !p-1.5 mx-2"
           >
             <MdOutlineChevronRight />
           </Button>
-          <Form className="flex !text-gray-500 w-3/4">
+          <Form className="flex !text-gray-500 md:1/3 lg:w-3/4 py-2 md:py-0">
             <MdSearch className="absolute text-xl m-2" />
             <Form.Control
               type="search"
