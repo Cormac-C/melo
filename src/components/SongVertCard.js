@@ -1,28 +1,9 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
 import { MdMoreVert } from "react-icons/md";
 
 import UserDataContext from "../context";
 import Music from "../Music";
-import { VertCard } from "../components";
-
-export function SongOptions({songID, onClick}) {
-  const dispatch = useContext(UserDataContext)[1];
-  const { artist } = Music.getSong(songID);
-
-  return (
-    <div
-      className="absolute left-2 z-100 bg-white rounded p-2 text-blue-900"
-      onClick={onClick && onClick()}
-    >
-      <p className="w-max" onClick={() => dispatch({type: 'add-to-queue', song: songID})}>Add to queue</p>
-      <Link className="no-underline text-blue-900" to={`/artist/${artist}`}>Go to artist</Link><br/>
-      {/* <Link className="no-u nderline text-blue-900" to={`/album/${album}`}>Go to album</Link> */}
-      <p className="w-max" onClick={() => dispatch({type: 'like-song', song: songID})}>Save to liked songs</p>
-      {/* <p className="w-max" onClick={() => {}}>Add to playlist</p> */}
-    </div>
-  );
-}
+import { VertCard, SongOptions } from "../components";
 
 export function SongVertCard({ songID, onClick }) {
   const dispatch = useContext(UserDataContext)[1];
@@ -48,7 +29,9 @@ export function SongVertCard({ songID, onClick }) {
             onClick={() => setIsShowingOptions(!isShowingOptions)}
             className="text-2xl"
           />
-          {isShowingOptions && <SongOptions songID={songID} onClick={() => setIsShowingOptions(false)} />}
+          {isShowingOptions && (
+            <SongOptions className="left-2" songID={songID} onClose={() => setIsShowingOptions(false)} />
+          )}
         </div>
       </VertCard>
     </div>
