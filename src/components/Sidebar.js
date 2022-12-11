@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdHomeFilled, MdLibraryMusic, MdFavorite } from "react-icons/md";
 import createPlaylist from "../assets/createPlaylist.svg";
 import UserDataContext from "../context";
@@ -8,9 +8,11 @@ import { Player, PlaylistEditModal } from "./";
 export function Sidebar() {
   const [{ playlists }, dispatch] = useContext(UserDataContext);
   const [makingNewList, setOpenNewList] = useState(false);
+  const navigate = useNavigate();
 
   const makePlaylist = (title) => {
     dispatch({type: 'create-playlist', playlist: { title, songs: [] }});
+    navigate("/list/-1");
   }
 
   return (
@@ -49,7 +51,11 @@ export function Sidebar() {
               Create Playlist
             </button>
             {makingNewList && (
-              <PlaylistEditModal onClose={() => setOpenNewList(false)} onSave={makePlaylist} />
+              <PlaylistEditModal
+                heading="Create New Playlist"
+                onClose={() => setOpenNewList(false)}
+                onSave={makePlaylist}
+              />
             )}
           </div>
           <div

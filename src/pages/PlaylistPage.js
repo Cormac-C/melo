@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { MdSearch } from "react-icons/md";
 import { MainPage } from "./Middleware";
 import Music from "../Music";
@@ -17,9 +17,23 @@ const selectRandSong = () => {
 
 export function PlaylistPage() {
   let { id } = useParams();
+  const navigate = useNavigate();
   const [{ playlists }, dispatch] = useContext(UserDataContext);
   const [query, setQuery] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    if (id === "-1") {
+      const ids = Object.keys(playlists);
+      const latestID = ids[ids.length - 1];
+      navigate(`/list/${latestID}`);
+    }
+  });
+
+  if (!Object.keys(playlists).includes(id)) {
+    return <></>;
+  }
+
   const { title, songs } = playlists[id];
 
   const addRandomSong = () => {
