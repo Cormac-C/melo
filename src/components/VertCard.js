@@ -1,20 +1,23 @@
 import React from "react";
 import { Image } from "react-bootstrap";
 
-export function VertCard({ title, subtitle, imgSrc }) {
+export function VertCard({ title, subtitle, imgSrc, children }) {
   // Default for development purposes
   if (imgSrc === undefined) imgSrc = require("../assets/bieberAlbum.png");
 
   return (
     <div
-      className="w-60 bg-no-repeat bg-cover rounded-md"
+      className="w-32 sm:w-60 h-100% bg-no-repeat bg-cover rounded-md"
       style={{ backgroundImage: `url(${imgSrc})` }}
     >
-      <div className="backdrop-blur backdrop-brightness-75 backdrop-saturate-50 h-full  w-full p-4 rounded-md">
-        <Image className="!h-auto !w-48 !mx-auto " variant="top" src={imgSrc} />
-        <div className="text-white !w-48 !mx-auto">
-          <h4>{title}</h4>
-          <p>{subtitle}</p>
+      <div className="backdrop-blur backdrop-brightness-75 backdrop-saturate-50 h-full w-full max-sm:p-1 sm:p-4 rounded-md">
+        <Image className="!h-auto !w-full !mx-auto pb-4" variant="top" src={imgSrc} />
+        <div className="flex">
+          <div className="text-white flex-1">
+            <h4 className="max-sm:text-xs m-0">{title}</h4>
+            <p className="max-sm:hidden m-0">{subtitle}</p>
+          </div>
+          {children}
         </div>
       </div>
     </div>

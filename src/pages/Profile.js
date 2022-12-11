@@ -107,29 +107,25 @@ export function Profile() {
       </Row>
       <h2 className="text-white my-4">Your Most Played Songs</h2>
       <Row className="w-full mb-8">
-        <div className="flex flex-row overflow-x-scroll space-x-4">
-          {songs.map((song) => {
-            return (
-              <VertCard
-                title={song.title}
-                subtitle={song.artist}
-                imgSrc={require(`../assets/${song.src}`)}
-              />
-            );
-          })}
+        <div className="flex flex-row overflow-x-scroll space-x-4 scrollbar-thin">
+          {songs.map((song) => (
+            <VertCard
+              title={song.title}
+              subtitle={song.artist}
+              imgSrc={require(`../assets/${song.src}`)}
+            />
+          ))}
         </div>
       </Row>
       <h2 className="text-white my-4">Your Most Played Artists</h2>
       <Row className="w-full mb-8">
         <div className="flex flex-row overflow-x-scroll space-x-4">
-          {albums.map((album) => {
-            return (
-              <VertCard
-                title={album.artist}
-                imgSrc={require(`../assets/${album.src}`)}
-              />
-            );
-          })}
+          {albums.map((album) => (
+            <VertCard
+              title={album.artist}
+              imgSrc={require(`../assets/${album.src}`)}
+            />
+          ))}
         </div>
       </Row>
     </MainPage>

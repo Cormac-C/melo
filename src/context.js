@@ -77,7 +77,7 @@ const playSong = (state, index) => {
 };
 const setQueue = (state, songs) => {
   const newState = { ...state };
-  newState.queue = songs;
+  newState.queue = [...songs];
   newState.currentSong = 0;
   newState.player.src = getSong(newState);
   newState.player.pause();
@@ -92,6 +92,7 @@ const changePauseStatus = (state, status) => {
 const addToQueue = (state, songID) => {
   const newState = { ...state };
   newState.queue.push(songID);
+  console.log(state);
   return newState;
 };
 

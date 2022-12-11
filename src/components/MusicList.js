@@ -110,7 +110,7 @@ function SongOptionsMenu({ shownSong, closeMenu }) {
 }
 
 export function MusicList(
-  { title, songs, children, page } = { title: "", songs: [] }
+  { title, songs, page } = { title: "", songs: [] }
 ) {
   const [shownSong, setShownSong] = useState(null);
   const dispatch = useContext(UserDataContext)[1];
@@ -127,7 +127,6 @@ export function MusicList(
   return (
     <div className="text-white text-left">
       {title && <h2>{title}</h2>}
-      {children}
       {/* Mobile */}
       <div className="sm:hidden">
         {songs.map((songID, i) => (

@@ -11,6 +11,10 @@ module.exports = {
         },
       },
     },
+    gridTemplateColumns: {
+      'fill-15': 'repeat(auto-fill, 15rem)',
+      'fill-7': 'repeat(auto-fill, 7rem)',
+    },
   },
   plugins: [
     require('tailwind-scrollbar')

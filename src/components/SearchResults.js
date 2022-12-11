@@ -1,23 +1,29 @@
 import React, { useContext } from "react";
 import { useSearchParams } from "react-router-dom";
+import { SongVertCard } from "./SongVertCard";
 import { VertCard } from "./VertCard";
 import userDataContext from "../context"
 import Music from "../Music";
 
 const songs = Music.getSongs();
-const albums = Music.getAlbums();
 
 const searchSongs = (query) => {
   return Object.values(songs).filter(
     ({ title }) => title.toLowerCase().includes(query.toLowerCase())
-  );
+  ).map(({ id }) => id);
 }
 
 export function SearchResults() {
   let [searchParams] = useSearchParams();
+  const [{ playlists }, dispatch] = useContext(userDataContext);
   const query = searchParams.get("q");
-  const [{ playlists }] = useContext(userDataContext);
   const songResults = searchSongs(query);
+
+  const playMusic = (songID) => {
+    const index = songResults.findIndex(id => id === songID);
+    dispatch({ type: 'set-queue', songs: songResults });
+    dispatch({ type: 'play-song', index });
+  }
 
   const playlistResults = Object.values(playlists).filter(
     ({ title }) => title.toLowerCase().includes(query.toLowerCase())
@@ -26,22 +32,11 @@ export function SearchResults() {
   return (
     <div className="w-full pb-60">
       <h2 className="w-screen my-4">Top Results for "{ query }"</h2>
-      <div className="grid grid-cols-5 gap-8">
-        {
-          songResults.map(({ id, title, album }) => {
-            const { photo } = albums[album];
-            return (
-              <VertCard
-                key={id}
-                title={title}
-                imgSrc={require(`../assets/${photo}`)}
-              />
-            );
-          })
-        }
+      <div className="grid grid-cols-fill-7 sm:grid-cols-fill-15 gap-8">
+        {songResults.map((id) => <SongVertCard key={id} songID={id} onClick={playMusic}/>)}
       </div>
       { playlistResults.length ? <h2 className="my-4">Playlists</h2> : <></> }
-      <div className="grid grid-cols-5 gap-8">
+      <div className="grid grid-cols-fill-7 sm:grid-cols-fill-15 gap-8">
         { playlistResults.map(({ title }, i) => <VertCard key={i} title={title} />)}
       </div>
       { !(songResults.length || playlistResults.length) && <p>No Results :(</p> }

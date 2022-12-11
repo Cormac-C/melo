@@ -44,40 +44,40 @@ export function PlaylistPage() {
 
   return (
     <MainPage>
-      <MusicList title={title} songs={songs} page="playlist">
-        <p>Search for songs to add to your playlist!</p>
-        <div className="flex">
-          <Form className="flex !text-gray-500">
-            <MdSearch className="absolute text-xl m-2" />
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2 !px-9 !rounded-full !bg-zinc-800 !border-none !text-white"
-              aria-label="Search"
-              onKeyUp={(e) => setQuery(e.target.value)}
-            />
-          </Form>
-          <button
-            className="rounded-full border px-3 border-purple-light bg-transparent max-sm:hidden"
-            onClick={addRandomSong}
-          >
-            ADD SONGS FOR ME
-          </button>
-        </div>
-        <div className="flex flex-col">
-          {searchSongs(query).map(song => 
-            <div className="flex items-center justify-between p-6 pl-0" key={song}>
-              <SongIcon songID={song} />
-              <button
-                className="border rounded-full px-4 py-2"
-                onClick={() => dispatch({type: 'add-to-playlist', playlist: id, song})}
-              >
-                Add
-              </button>
-            </div>
-          )}
-        </div>
-      </MusicList>
+      <h2>{title}</h2>
+      <p>Search for songs to add to your playlist!</p>
+      <div className="flex justify-between mr-6 mt-2">
+        <Form className="!flex flex-1 pr-6 !text-gray-500">
+          <MdSearch className="absolute text-xl m-2" />
+          <Form.Control
+            type="search"
+            placeholder="Search"
+            className="me-2 !px-9 !rounded-full !bg-zinc-800 !border-none !text-white"
+            aria-label="Search"
+            onKeyUp={(e) => setQuery(e.target.value)}
+          />
+        </Form>
+        <button
+          className="rounded-full border px-3 border-purple-light bg-transparent max-sm:hidden"
+          onClick={addRandomSong}
+        >
+          ADD SONGS FOR ME
+        </button>
+      </div>
+      <div className="flex flex-col">
+        {searchSongs(query).map(song => 
+          <div className="flex items-center justify-between p-6 pl-0" key={song}>
+            <SongIcon songID={song} />
+            <button
+              className="border rounded-full px-4 py-2"
+              onClick={() => dispatch({type: 'add-to-playlist', playlist: id, song})}
+            >
+              Add
+            </button>
+          </div>
+        )}
+      </div>
+      <MusicList songs={songs} page="playlist" />
     </MainPage>
   );
 }
