@@ -1,5 +1,6 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
+import Music from "./Music";
 
 /*
 DATA STRUCTURE
@@ -14,6 +15,14 @@ DATA STRUCTURE
   },
 }
  */
+
+const getSong = (state) => {
+  const song = state.queue[state.currentSong];
+  const { file } = Music.getSong(song);
+  if (file) {
+    return require(`./assets/songs/${file}`);
+  }
+}
 
 const followArtist = (state, artistID) => {
   const newState = { ...state };
@@ -34,7 +43,6 @@ const likeSong = (state, songID) => {
   } else {
     newState.likedSongs.push(songID);
   }
-  console.log(newState);
   return newState;
 };
 
@@ -60,23 +68,25 @@ const playSong = (state, index) => {
   const newState = { ...state };
   if (0 <= index && index < state.queue.length) {
     newState.currentSong = index;
-    newState.isPlaying = true;
+    newState.player.src = getSong(newState);
+    newState.player.play();
   } else {
-    newState.isPlaying = false;
+    newState.player.pause();
   }
-  console.log(newState);
   return newState;
 };
 const setQueue = (state, songs) => {
   const newState = { ...state };
   newState.queue = songs;
-  newState.isPlaying = false;
   newState.currentSong = 0;
+  newState.player.src = getSong(newState);
+  newState.player.pause();
   return newState;
 }
 const changePauseStatus = (state, status) => {
   const newState = { ...state };
-  newState.isPlaying = status ?? !newState.isPlaying;
+  const newStatus = status ?? newState.player.paused;
+  newStatus ? newState.player.play() : newState.player.pause();
   return newState;
 };
 const addToQueue = (state, songID) => {

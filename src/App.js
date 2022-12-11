@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserDataContext, { userDataReducer } from "./context";
 import {
@@ -19,9 +19,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   const [state, dispatch] = useReducer(userDataReducer, {
     // Song player
-    queue: ["What's the Difference", "Mob Ties"],
+    queue: [],
     currentSong: 0,
-    isPlaying: false,
+    player: new Audio(),
     // User info
     likedSongs: [],
     followedArtists: [],
@@ -36,6 +36,14 @@ function App() {
       },
     },
   });
+
+  // Makes player go through the queue (i.e. play next song when one ends)
+  useEffect(() => {
+    state.player.addEventListener("ended", () => 
+      dispatch({type: 'play-song', index: state.currentSong + 1})
+    );
+  }, [])
+  
 
   return (
     <UserDataContext.Provider value={[state, dispatch]}>

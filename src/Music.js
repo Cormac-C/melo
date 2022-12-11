@@ -38,7 +38,7 @@ const music = {
           {
             id: "G.O.M.D.",
             title: "G.O.M.D.",
-            file: "G.O.M.D..mp3",
+            file: "GOMD.mp3",
           },
         ],
       },

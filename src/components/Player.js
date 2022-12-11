@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import {
   MdAirplay,
   MdPlayCircle,
@@ -13,26 +13,12 @@ import UserDataContext from "../context";
 import Music from "../Music";
 import { Link } from "react-router-dom";
 
-const audio = new Audio();
-
 export function Player({ className }) {
-  const [{ queue, currentSong, isPlaying }, dispatch] =
-    useContext(UserDataContext);
+  const [{ player, queue, currentSong }, dispatch] = useContext(UserDataContext);
   if (queue.length && queue[currentSong]) {
     var songID = queue[currentSong];
     var song = Music.getSong(songID);
     var album = Music.getAlbum(song.album, { by: song.artist });
-  }
-
-  useEffect(() => {
-    audio.src = require(`../assets/songs/${song.file}`);
-    // eslint-disable-next-line
-  }, [queue, currentSong]);
-
-  if (isPlaying) {
-    audio.play();
-  } else {
-    audio.pause();
   }
 
   if (!song) return <></>;
@@ -51,10 +37,10 @@ export function Player({ className }) {
           <p className="text-sm">{song.artist}</p>
         </div>
         <button onClick={() => dispatch({ type: "change-pause-status" })}>
-          {isPlaying ? (
-            <MdPauseCircle className="text-4xl" />
-          ) : (
+          {player.paused ? (
             <MdPlayCircle className="text-4xl" />
+            ) : (
+            <MdPauseCircle className="text-4xl" />
           )}
         </button>
       </div>
@@ -84,10 +70,10 @@ export function Player({ className }) {
               <MdSkipPrevious className="bg-white rounded-full border-4 border-gray-500 opacity-80 text-black p-1 text-4xl" />
             </button>
             <button onClick={() => dispatch({ type: "change-pause-status" })}>
-              {isPlaying ? (
-                <MdPauseCircle className="bg-purple-default rounded-full" />
-              ) : (
+              {player.paused ? (
                 <MdPlayCircle className="bg-purple-default rounded-full" />
+                ) : (
+                <MdPauseCircle className="bg-purple-default rounded-full" />
               )}
             </button>
             <button
