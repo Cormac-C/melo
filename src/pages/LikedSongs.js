@@ -8,11 +8,8 @@ export function LikedSongs() {
 
   return (
     <MainPage>
-      {likedSongs.length ? (
-        <MusicList title={"Liked Songs"} songs={likedSongs} page="playlist" />
-      ) : (
-        <h2 className="mt-20 flex justify-center">No liked songs yet :)</h2>
-      )}
+      <h2>{likedSongs.length ? "Liked Songs" : "No liked songs yet :)"}</h2>
+      <MusicList songs={likedSongs} page="playlist" />
     </MainPage>
   );
 }

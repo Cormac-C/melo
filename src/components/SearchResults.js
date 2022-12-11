@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { SongVertCard } from "./SongVertCard";
 import { VertCard } from "./VertCard";
 import userDataContext from "../context"
@@ -25,9 +25,10 @@ export function SearchResults() {
     dispatch({ type: 'play-song', index });
   }
 
-  const playlistResults = Object.values(playlists).filter(
-    ({ title }) => title.toLowerCase().includes(query.toLowerCase())
+  const playlistResults = Object.entries(playlists).filter(
+    ([id, { title }]) => title.toLowerCase().includes(query.toLowerCase())
   );
+  const playlistIDs = Object.keys(Object.fromEntries(playlistResults));
 
   return (
     <div className="w-full pb-60">
@@ -37,7 +38,11 @@ export function SearchResults() {
       </div>
       { playlistResults.length ? <h2 className="my-4">Playlists</h2> : <></> }
       <div className="grid grid-cols-fill-7 sm:grid-cols-fill-15 gap-8">
-        { playlistResults.map(({ title }, i) => <VertCard key={i} title={title} />)}
+        { playlistIDs.map((id) => (
+          <Link className="no-underline" to={`/list/${id}`}>
+            <VertCard key={id} title={playlists[id].title} />
+          </Link>
+        ))}
       </div>
       { !(songResults.length || playlistResults.length) && <p>No Results :(</p> }
     </div>

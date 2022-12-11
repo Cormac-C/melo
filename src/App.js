@@ -42,7 +42,7 @@ function App() {
     state.player.addEventListener("ended", () => 
       dispatch({type: 'play-song', index: state.currentSong + 1})
     );
-  }, [])
+  });
   
 
   return (

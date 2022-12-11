@@ -55,7 +55,6 @@ const createPlaylist = (state, newPlaylist) => {
   };
   return newState;
 };
-
 const addSong = (state, playlistID, songID) => {
   const newState = { ...state };
   if (!newState.playlists[playlistID].songs.includes(songID)) {
@@ -63,6 +62,11 @@ const addSong = (state, playlistID, songID) => {
   }
   return newState;
 };
+const updatePlaylist = (state, playlistID, title) => {
+  const newState = { ...state };
+  newState.playlists[playlistID].title = title;
+  return newState;
+}
 
 const playSong = (state, index) => {
   const newState = { ...state };
@@ -104,6 +108,8 @@ export const userDataReducer = (state, { type, ...payload }) => {
       return createPlaylist(state, payload.playlist);
     case "add-to-playlist":
       return addSong(state, payload.playlist, payload.song);
+    case "update-playlist":
+      return updatePlaylist(state, payload.playlist, payload.title);
     case "follow-artist":
       return followArtist(state, payload.artist);
     // Song Player
