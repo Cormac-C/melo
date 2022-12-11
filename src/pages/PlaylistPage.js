@@ -31,7 +31,9 @@ export function PlaylistPage() {
   });
 
   if (!Object.keys(playlists).includes(id)) {
-    return <></>;
+    return <MainPage>
+      <h2>This playlist does not exist :(</h2>
+    </MainPage>;
   }
 
   const { title, songs } = playlists[id];

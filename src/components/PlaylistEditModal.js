@@ -23,7 +23,7 @@ export function PlaylistEditModal({ onClose, onSave, children, heading="Edit Pla
       >
         <div className="bg-zinc-800 p-8 space-y-6 min-w-[30%]" onClick={(e) => e.stopPropagation()}>
           <h2>{heading}</h2>
-          <Form>
+          <div>
             <h6>Playlist Title</h6>
             <Form.Control
               type="text"
@@ -31,7 +31,7 @@ export function PlaylistEditModal({ onClose, onSave, children, heading="Edit Pla
               aria-label="Playlist Title"
               onKeyUp={onKeyPress}
             />
-          </Form>
+          </div>
           <div className="flex justify-between pt-4">
             <button
               className="rounded-full border px-3 py-1 border-purple-light bg-transparent"
