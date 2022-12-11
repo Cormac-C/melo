@@ -1,12 +1,17 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { MdHomeFilled, MdLibraryMusic, MdFavorite } from "react-icons/md";
 import createPlaylist from "../assets/createPlaylist.svg";
 import UserDataContext from "../context";
-import { Player } from "./Player";
+import { Player, PlaylistEditModal } from "./";
 
 export function Sidebar() {
   const [{ playlists }, dispatch] = useContext(UserDataContext);
+  const [makingNewList, setOpenNewList] = useState(false);
+
+  const makePlaylist = (title) => {
+    dispatch({type: 'create-playlist', playlist: { title, songs: [] }});
+  }
 
   return (
     <>
@@ -37,12 +42,15 @@ export function Sidebar() {
               <h1 className="text-3xl">melo</h1>
             </div>
             <button
-              onClick={() => dispatch("create-playlist")}
+              onClick={() => setOpenNewList(true)}
               className="w-full flex justify-evenly p-2 rounded bg-violet-700 hover:bg-violet-800"
             >
               <img src={createPlaylist} alt="Create Playlist" />
               Create Playlist
             </button>
+            {makingNewList && (
+              <PlaylistEditModal onClose={() => setOpenNewList(false)} onSave={makePlaylist} />
+            )}
           </div>
           <div
             className="

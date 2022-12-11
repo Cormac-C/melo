@@ -4,7 +4,7 @@ import { MdMoreVert } from "react-icons/md";
 
 import UserDataContext from "../context";
 import Music from "../Music";
-import { VertCard } from "./VertCard";
+import { VertCard } from "../components";
 
 export function SongVertCard({ songID, onClick }) {
   const dispatch = useContext(UserDataContext)[1];

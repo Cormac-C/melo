@@ -1,12 +1,11 @@
 import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+
 import { MainPage } from "./Middleware";
 import { Row, Image, Button, ToggleButton } from "react-bootstrap";
-import { VertCard } from "../components";
 import UserDataContext from "../context";
-
 import Music from "../Music";
-import { MusicList } from "../components/MusicList";
+import { MusicList, VertCard } from "../components";
 
 const artists = Music.getArtists();
 

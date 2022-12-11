@@ -5,7 +5,7 @@ import { MdSearch } from "react-icons/md";
 import { MainPage } from "./Middleware";
 import Music from "../Music";
 import UserDataContext from "../context";
-import { SongIcon, MusicList } from "../components/MusicList";
+import { SongIcon, MusicList, PlaylistEditModal } from "../components";
 
 const possibleSongs = Music.getSongs();
 
@@ -14,45 +14,6 @@ const selectRandSong = () => {
   const index = Math.floor(Math.random() * songs.length);
   return songs[index];
 };
-
-function EditModal({ onClose, onSave }) {
-  const [title, setTitle] = useState("");
-
-  return (
-    <div className="
-      fixed w-screen h-screen left-0 top-0 m-0 z-30
-      bg-black/50 flex justify-center items-center"
-      onClick={onClose}
-    >
-      <div className="bg-zinc-800 p-8 space-y-6 min-w-[30%]" onClick={(e) => e.stopPropagation()}>
-        <h2>Edit Playlist Details</h2>
-        <Form>
-          <h6>Playlist Title</h6>
-          <Form.Control
-            type="text"
-            className="!rounded !bg-zinc-200 !border-none"
-            aria-label="Playlist Title"
-            onKeyUp={(e) => setTitle(e.target.value)}
-          />
-        </Form>
-        <div className="flex justify-between pt-4">
-          <button
-            className="rounded-full border px-3 py-1 border-purple-light bg-transparent"
-            onClick={onClose}
-          >
-            CANCEL
-          </button>
-          <button
-            className="rounded-full border px-3 py-1 border-purple-light bg-transparent"
-            onClick={() => {onSave(title); onClose()}}
-          >
-            SAVE CHANGES
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export function PlaylistPage() {
   let { id } = useParams();
@@ -95,7 +56,7 @@ export function PlaylistPage() {
         >
           EDIT PLAYLIST
         </button>
-        {isEditing && <EditModal onClose={() => setIsEditing(false)} onSave={updateTitle} />}
+        {isEditing && <PlaylistEditModal onClose={() => setIsEditing(false)} onSave={updateTitle} />}
       </div>
       <p>Search for songs to add to your playlist!</p>
       <div className="flex justify-between items-center mr-6 mt-2">

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { MainPage } from "./Middleware";
 import UserDataContext from "../context";
-import { MusicList } from "../components/MusicList";
+import { MusicList } from "../components";
 
 export function LikedSongs() {
   const [{ likedSongs }] = useContext(UserDataContext);

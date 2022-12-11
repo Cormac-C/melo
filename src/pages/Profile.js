@@ -1,9 +1,10 @@
 import { React, useState, useEffect } from "react";
-import { MainPage } from "./Middleware";
 import { Row, Image, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
+import { MainPage } from "./Middleware";
 import { VertCard } from "../components";
 import sampleUser from "../assets/sampleUser.png";
-import { useNavigate } from "react-router-dom";
 
 const albums = [
   {
