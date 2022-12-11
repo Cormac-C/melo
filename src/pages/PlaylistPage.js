@@ -60,6 +60,11 @@ export function PlaylistPage() {
     dispatch({type: 'update-playlist', playlist: id, title: newTitle});
   }
 
+  const deletePlaylist = () => {
+    dispatch({type: 'delete-playlist', playlist: id});
+    navigate("/");
+  }
+
   return (
     <MainPage>
       <div className="flex items-center space-x-8 mb-4">
@@ -70,7 +75,18 @@ export function PlaylistPage() {
         >
           EDIT PLAYLIST
         </button>
-        {isEditing && <PlaylistEditModal onClose={() => setIsEditing(false)} onSave={updateTitle} />}
+        {isEditing && (
+          <PlaylistEditModal onClose={() => setIsEditing(false)} onSave={updateTitle}>
+            <div className="flex justify-center">
+            <button
+              className="rounded-fullborder px-3 py-1 border-purple-light bg-transparent"
+              onClick={deletePlaylist}
+            >
+              DELETE PLAYLIST
+            </button>
+            </div>
+          </PlaylistEditModal>
+        )}
       </div>
       <p>Search for songs to add to your playlist!</p>
       <div className="flex justify-between items-center mr-6 mt-2">

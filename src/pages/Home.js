@@ -100,9 +100,10 @@ export function Home() {
           flex flex-row overflow-x-scroll space-x-4 p-2
           scrollbar-thin scrollbar-thumb-gray-600 scrollbar-thumb-rounded
         ">
-          {playlists.map((playlist) => {
+          {playlists.map((playlist, i) => {
             return (
               <VertCard
+                key={i}
                 title={playlist.title}
                 subtitle={playlist.subtitle}
                 imgSrc={require(`../assets/${playlist.src}`)}
@@ -117,10 +118,11 @@ export function Home() {
           flex flex-row overflow-x-scroll space-x-4 p-2
           scrollbar-thin scrollbar-thumb-gray-600 scrollbar-thumb-rounded
         ">
-          {albums.map((album) => {
+          {albums.map((album, i) => {
             return (
               <HorizCard
                 type="Album"
+                key={i}
                 artist={album.artist}
                 title={album.title}
                 release={album.release}
@@ -137,10 +139,11 @@ export function Home() {
           flex flex-row overflow-x-scroll space-x-4 p-2
           scrollbar-thin scrollbar-thumb-gray-600 scrollbar-thumb-rounded
         ">
-          {songs.map((song) => {
+          {songs.map((song, i) => {
             return (
               <HorizCard
                 type="Song"
+                key={i}
                 artist={song.artist}
                 title={song.title}
                 release={song.release}

@@ -67,6 +67,11 @@ const updatePlaylist = (state, playlistID, title) => {
   newState.playlists[playlistID].title = title;
   return newState;
 }
+const deletePlaylist = (state, playlistID) => {
+  const newState = { ...state };
+  delete newState.playlists[playlistID];
+  return newState;
+}
 
 const playSong = (state, index) => {
   const newState = { ...state };
@@ -110,6 +115,8 @@ export const userDataReducer = (state, { type, ...payload }) => {
       return addSong(state, payload.playlist, payload.song);
     case "update-playlist":
       return updatePlaylist(state, payload.playlist, payload.title);
+    case "delete-playlist":
+      return deletePlaylist(state, payload.playlist);
     case "follow-artist":
       return followArtist(state, payload.artist);
     // Song Player

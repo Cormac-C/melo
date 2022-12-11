@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 
-export function PlaylistEditModal({ onClose, onSave, heading="Edit Playlist Details" }) {
+export function PlaylistEditModal({ onClose, onSave, children, heading="Edit Playlist Details" }) {
     const [title, setTitle] = useState("");
 
     const onKeyPress = (e) => {
@@ -46,6 +46,7 @@ export function PlaylistEditModal({ onClose, onSave, heading="Edit Playlist Deta
               SAVE CHANGES
             </button>
           </div>
+          {children}
         </div>
       </div>
     );
