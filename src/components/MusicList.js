@@ -62,6 +62,12 @@ function Song({ songID, page, showOptions, onClick }) {
         <p className="max-sm:hidden">12300</p>
       )}
       <p className="max-sm:hidden">3:13</p>
+      {page === "playlist" && (
+        <MdMoreVert
+          onClick={() => showOptions(songID)}
+          className="max-sm:hidden text-2xl"
+        />
+      )}
     </>
   );
 }
@@ -127,14 +133,22 @@ export function MusicList(
 
   return (
     <div className="text-white text-left">
-      {/* Mobile */}
-      <div className="sm:hidden space-y-2">
+      <div className="grid gap-y-4 sm:grid-cols-[repeat(3,1fr)_min-content_10px] sm:p-6 sm:pl-0">
+        <p className="max-sm:hidden text-zinc-500">Song title</p>
+        <p className="max-sm:hidden text-zinc-500">Album</p>
+        {page === "playlist" ? (
+          <p className="max-sm:hidden text-zinc-500">Date added</p>
+        ) : (
+          <p className="max-sm:hidden text-zinc-500">No of Listeners</p>
+        )}
+        <p className="max-sm:hidden text-zinc-500">Duration</p>
+        <div/>
         {songs.map((songID, i) => (
           <Song
             key={songID}
             songID={songID}
-            showOptions={shownSongOptions}
             page={page}
+            showOptions={shownSongOptions}
             onClick={() => playMusic(i)}
           />
         ))}
@@ -144,25 +158,6 @@ export function MusicList(
             closeMenu={() => setShownSong(null)}
           />
         )}
-      </div>
-      {/* Desktop */}
-      <div className="max-sm:hidden grid grid-cols-[repeat(3,1fr)_min-content] gap-y-4 p-6 pl-0">
-        <p className="text-zinc-500">Song title</p>
-        <p className="text-zinc-500">Album</p>
-        {page === "playlist" ? (
-          <p className="text-zinc-500">Date added</p>
-        ) : (
-          <p className="text-zinc-500">No of Listeners</p>
-        )}
-        <p className="text-zinc-500">Duration</p>
-        {songs.map((songID, i) => (
-          <Song
-            key={songID}
-            songID={songID}
-            page={page}
-            onClick={() => playMusic(i)}
-          />
-        ))}
       </div>
     </div>
   );
