@@ -45,12 +45,13 @@ export function ArtistPage() {
       <Row>
         <Image
           src={require(`../assets/${artist.photo}`)}
-          className="!w-64 p-4 !h-64"
+          className="!w-1/2 md:!w-64 p-4 md:!h-64 object-cover"
         />
         <div className="!w-1/2 my-auto">
           <h1 className="text-white my-4">{id}</h1>
           <p className="text-gray-300 mb-4">67 bajillion monthly listeners</p>
-
+        </div>
+        <div className="flex justify-around lg:!w-1/2">
           <Button
             className={
               followed
