@@ -4,7 +4,6 @@ import {
   MdMoreVert,
   MdQueue,
   MdDoDisturbOn,
-  MdOutlineAlbum,
   MdFavorite,
   MdKeyboardVoice,
 } from "react-icons/md";
@@ -13,7 +12,7 @@ import UserDataContext from "../context";
 
 export function SongOptions({ songID, onClose, playlist, className="" }) {
   const dispatch = useContext(UserDataContext)[1];
-  const { album, artist } = Music.getSong(songID);
+  const { artist } = Music.getSong(songID);
 
   return (
     <>

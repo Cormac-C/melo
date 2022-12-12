@@ -74,7 +74,6 @@ export function Login() {
         <h4 className="text-gray-600 text-center">or</h4>
 
         <div className="flex flex-col md:flex-row justify-between">
-          {/* TODO add logos */}
           <Button
             className="!border-purple hover:!bg-purple !text-gray-600 hover:!text-white my-2 md:w-2/5 !flex flex-row"
             variant="outline-primary"
