@@ -20,23 +20,23 @@ export function Sidebar() {
       {/* Mobile */}
       <div className="sm:hidden absolute bottom-0 left-0 z-10 w-full">
         <Player />
-        <div className="grid grid-cols-3 bg-zinc-700 py-2 text-sm text-center text-gray">
-          <Link className="text-white no-underline" to="/">
+        <div className="flex bg-zinc-700 py-2 text-sm text-center text-gray border-none">
+          <Link className="text-white no-underline w-1/3" to="/">
             <MdHomeFilled className="m-auto text-lg" />
             <p className="m-0">Home</p>
           </Link>
-          <Link className="text-white no-underline" to="/profile">
+          <Link className="text-white no-underline w-1/3" to="/profile">
             <MdLibraryMusic className="m-auto text-lg" />
             <p className="m-0">Your Library</p>
           </Link>
-          <Link className="text-white no-underline" to="/liked-songs">
+          <Link className="text-white no-underline w-1/3" to="/liked-songs">
             <MdFavorite className="m-auto text-lg" />
             <p className="m-0">Liked Songs</p>
           </Link>
         </div>
       </div>
       {/* Desktop */}
-      <div className="max-sm:hidden w-42 md:w-72 h-full relative">
+      <div className="max-sm:hidden w-42 md:w-72 h-full">
         <div className="w-42 md:w-72 h-full bg-zinc-800 grid grid-rows-[min-content_1fr_min-content]">
           <div className="flex flex-col p-4 space-y-6">
             <div className="flex content-center">

@@ -122,7 +122,7 @@ export function PlaylistPage() {
           </div>
         )}
       </div>
-      <MusicList songs={songs} page="playlist" />
+      <MusicList songs={songs} playlist={id} />
     </MainPage>
   );
 }

@@ -165,7 +165,6 @@ export function Signup() {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between">
-          {/* TODO add logos */}
           <Link className="text-gray-600 !flex flex-row">
             <Image src={facebook} className="w-5 h-auto mr-1" />
             Register with Facebook

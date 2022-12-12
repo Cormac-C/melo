@@ -1,10 +1,9 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
 import { MdMoreVert } from "react-icons/md";
 
 import UserDataContext from "../context";
 import Music from "../Music";
-import { VertCard } from "../components";
+import { VertCard, SongOptions } from "../components";
 
 export function SongVertCard({ songID, onClick }) {
   const dispatch = useContext(UserDataContext)[1];
@@ -25,22 +24,17 @@ export function SongVertCard({ songID, onClick }) {
         subtitle={song.artist}
         imgSrc={require(`../assets/${album.photo}`)}
       >
-        <div className="relative" onClick={(e) => e.stopPropagation()}>
+        <div onClick={(e) => e.stopPropagation()}>
           <MdMoreVert
             onClick={() => setIsShowingOptions(!isShowingOptions)}
             className="text-2xl"
           />
           {isShowingOptions && (
-            <div
-              className="absolute left-2 z-100 bg-white rounded p-2 text-blue-900"
-              onClick={() => setIsShowingOptions(false)}
-            >
-              <p className="w-max" onClick={() => dispatch({type: 'add-to-queue', song: songID})}>Add to queue</p>
-              <Link className="no-underline text-blue-900" to={`/artist/${song.artist}`}>Go to artist</Link><br/>
-              {/* <Link className="no-u nderline text-blue-900" to={`/album/${song.album}`}>Go to album</Link> */}
-              <p className="w-max" onClick={() => dispatch({type: 'like-song', song: songID})}>Save to liked songs</p>
-              {/* <p className="w-max" onClick={() => {}}>Add to playlist</p> */}
-            </div>
+            <SongOptions
+              className="right-8"
+              songID={songID}
+              onClose={() => setIsShowingOptions(false)}
+            />
           )}
         </div>
       </VertCard>
