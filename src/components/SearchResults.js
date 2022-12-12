@@ -31,7 +31,7 @@ export function SearchResults() {
   const playlistIDs = Object.keys(Object.fromEntries(playlistResults));
 
   return (
-    <div className="w-full pb-60">
+    <div className="w-full">
       <h2 className="w-screen my-4">Top Results for "{ query }"</h2>
       <div className="grid grid-cols-fill-7 sm:grid-cols-fill-15 gap-8">
         {songResults.map((id) => <SongVertCard key={id} songID={id} onClick={playMusic}/>)}

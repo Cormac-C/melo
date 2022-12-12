@@ -11,7 +11,7 @@ import {
 import Music from "../Music";
 import UserDataContext from "../context";
 
-export function SongOptions({ songID, onClose, className="" }) {
+export function SongOptions({ songID, onClose, playlist, className="" }) {
   const dispatch = useContext(UserDataContext)[1];
   const { album, artist } = Music.getSong(songID);
 
@@ -26,35 +26,48 @@ export function SongOptions({ songID, onClose, className="" }) {
         <Link className="no-underline text-blue-900" to={`/artist/${artist}`}>Go to artist</Link><br/>
         {/* <Link className="no-u nderline text-blue-900" to={`/album/${album}`}>Go to album</Link> */}
         <p className="w-max" onClick={() => dispatch({type: 'like-song', song: songID})}>Save to liked songs</p>
+        {playlist && (
+          <p
+            className="w-max"
+            onClick={() => dispatch({type: 'remove-from-playlist', playlist, song: songID})}
+          >
+            Remove from playlist
+          </p>
+        )}
         {/* <p className="w-max" onClick={() => {}}>Add to playlist</p> */}
       </div>
       {/* Mobile */}
-      <div className="sm:hidden fixed w-screen h-screen left-0 top-0 m-0 z-30" onClick={onClose}>
+      <div className="sm:hidden absolute !left-0 !top-0 w-screen h-screen m-0 z-30" onClick={onClose}>
         <div className="
           absolute bottom-0 left-0 w-full
           bg-zinc-900 flex flex-col text-white
           divide-slate-700 divide-y divide-solid p-4 pb-0
         ">
-          <button className="flex items-center p-2" onClick={onClose}>
+          <button className="flex items-center p-2" onClick={() => dispatch({type: 'add-to-queue', song: songID})}>
             <MdQueue className="mr-2" />
-            Add to Queue
-          </button>
-          <button className="flex items-center p-2" onClick={onClose}>
-            <MdDoDisturbOn className="mr-2" />
-            Remove from Playlist
-          </button>
-          <Link className="flex text-white p-2 items-center no-underline" to={`/album/${album}`}>
-            <MdOutlineAlbum className="mr-2" />
-            Go to Album
-          </Link>
-          <button className="flex items-center p-2" onClick={() => dispatch({ type: "like-song", song: songID })}>
-            <MdFavorite className="mr-2" />
-            Save to Liked Songs
+            Add to queue
           </button>
           <Link className="flex text-white p-2 items-center no-underline" to={`/artist/${artist}`}>
             <MdKeyboardVoice className="mr-2" />
-            Go to Artist
+            Go to artist
           </Link>
+          {/* <Link className="flex text-white p-2 items-center no-underline" to={`/album/${album}`}>
+            <MdOutlineAlbum className="mr-2" />
+            Go to Album
+          </Link> */}
+          <button className="flex items-center p-2" onClick={() => dispatch({ type: "like-song", song: songID })}>
+            <MdFavorite className="mr-2" />
+            Save to liked Songs
+          </button>
+          {playlist && (
+            <button
+              className="flex items-center p-2"
+              onClick={() => dispatch({type: 'remove-from-playlist', playlist, song: songID})}
+            >
+              <MdDoDisturbOn className="mr-2" />
+              Remove from playlist
+            </button>
+          )}
           <button className="p-3" onClick={onClose}>
             Close
           </button>
@@ -92,30 +105,27 @@ export function SongIcon({ songID, onClick }) {
   );
 }
 
-export function Song({ songID, page, onClick }) {
+export function Song({ songID, playlist, onClick }) {
   const [isOptions, showOptions] = useState(false);
   const { album } = Music.getSong(songID);
 
   return (
     <>
       <div className="flex items-center">
-        <MdMoreVert
-          onClick={() => showOptions(!isOptions)}
-          className="sm:hidden text-2xl"
-        />
+        <MdMoreVert className="sm:hidden text-2xl" onClick={() => showOptions(!isOptions)} />
         <SongIcon songID={songID} onClick={onClick} />
       </div>
       <p className="max-sm:hidden">{album}</p>
-      {page === "playlist" ? (
+      {playlist ? (
         <p className="max-sm:hidden">Nov 10, 2022</p>
       ) : (
         <p className="max-sm:hidden">12300</p>
       )}
       <p className="max-sm:hidden">3:13</p>
-      <div className="max-sm:hidden relative hover:cursor-pointer">
-        <MdMoreVert className="text-2xl" onClick={() => showOptions(!isOptions)} />
+      <div className="hover:cursor-pointer">
+        <MdMoreVert className="max-sm:hidden text-2xl" onClick={() => showOptions(!isOptions)} />
         {isOptions && (
-          <SongOptions className="right-0" songID={songID} onClose={() => showOptions(false)} />
+          <SongOptions className="right-0" playlist={playlist} songID={songID} onClose={() => showOptions(false)} />
         )}
       </div>
     </>

@@ -62,6 +62,14 @@ const addSong = (state, playlistID, songID) => {
   }
   return newState;
 };
+const removeSong = (state, playlistID, songID) => {
+  const newState = { ...state };
+  const index = newState.playlists[playlistID].songs.findIndex((song) => song === songID);
+  if (index !== -1) {
+    newState.playlists[playlistID].songs.splice(index, 1);
+  }
+  return newState;
+}
 const updatePlaylist = (state, playlistID, title) => {
   const newState = { ...state };
   newState.playlists[playlistID].title = title;
@@ -113,6 +121,8 @@ export const userDataReducer = (state, { type, ...payload }) => {
       return createPlaylist(state, payload.playlist);
     case "add-to-playlist":
       return addSong(state, payload.playlist, payload.song);
+    case "remove-from-playlist":
+      return removeSong(state, payload.playlist, payload.song);
     case "update-playlist":
       return updatePlaylist(state, payload.playlist, payload.title);
     case "delete-playlist":

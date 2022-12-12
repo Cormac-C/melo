@@ -3,7 +3,7 @@ import UserDataContext from "../context";
 import { Song } from "../components";
 
 export function MusicList(
-  { songs, page } = { songs: [] }
+  { songs, playlist } = { songs: [] }
 ) {
   const dispatch = useContext(UserDataContext)[1];
 
@@ -17,7 +17,7 @@ export function MusicList(
       <div className="grid gap-y-4 sm:grid-cols-[repeat(3,1fr)_min-content_10px] sm:p-6 sm:pl-0">
         <p className="max-sm:hidden text-zinc-500">Song title</p>
         <p className="max-sm:hidden text-zinc-500">Album</p>
-        {page === "playlist" ? (
+        {playlist ? (
           <p className="max-sm:hidden text-zinc-500">Date added</p>
         ) : (
           <p className="max-sm:hidden text-zinc-500">No of Listeners</p>
@@ -28,7 +28,7 @@ export function MusicList(
           <Song
             key={songID}
             songID={songID}
-            page={page}
+            playlist={playlist}
             onClick={() => playMusic(i)}
           />
         ))}

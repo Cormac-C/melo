@@ -24,13 +24,17 @@ export function SongVertCard({ songID, onClick }) {
         subtitle={song.artist}
         imgSrc={require(`../assets/${album.photo}`)}
       >
-        <div className="relative" onClick={(e) => e.stopPropagation()}>
+        <div onClick={(e) => e.stopPropagation()}>
           <MdMoreVert
             onClick={() => setIsShowingOptions(!isShowingOptions)}
             className="text-2xl"
           />
           {isShowingOptions && (
-            <SongOptions className="left-2" songID={songID} onClose={() => setIsShowingOptions(false)} />
+            <SongOptions
+              className="right-8"
+              songID={songID}
+              onClose={() => setIsShowingOptions(false)}
+            />
           )}
         </div>
       </VertCard>
